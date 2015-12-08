@@ -66,7 +66,7 @@
                      && [givenArray[i+1] isEqualToString:@"("]){}//+sin(
                 
             else //error
-                result = [NSString stringWithFormat:@"%@ %@",result,@"Before unary operations can be operation\n After unary operations should be Value!"];
+                result = [NSString stringWithFormat:@"%@ %@",result,@"Operation UnaryOperation Value\n"];
         }
         //for factr
         if([givenArray[i] isEqualToString:@"!"])
@@ -82,10 +82,10 @@
                 else if ([givenArray[i-1] isEqualToString:@")"] && [binaryOperations containsObject:givenArray[i+1]]){}//)!+
                 
                 else //error
-                    result = [NSString stringWithFormat:@"%@ %@",result,@"Before '!' should be a value!\n After '!' should be a operation!\n"];
+                    result = [NSString stringWithFormat:@"%@ %@",result,@"value ! operation\n"];
             }
             else //error
-                result = [NSString stringWithFormat:@"%@ %@",result,@"Before '!' should be a value!\n After '!' should be a operation!\n"];
+                result = [NSString stringWithFormat:@"%@ %@",result,@"value ! operation\n"];
         }
         //for binary operations
         if([binaryOperations containsObject:givenArray[i]])
@@ -101,10 +101,10 @@
                 else if([givenArray[i-1] isEqualToString:@")"] && [self isNum:givenArray[i+1]]){}//)+1
                 
                 else
-                    result = [NSString stringWithFormat:@"%@ %@",result,@"Before and after binary operations should be a values!\n"];
+                    result = [NSString stringWithFormat:@"%@ %@",result,@"Value BinaryOperation Value\n"];
             }
             else
-                result = [NSString stringWithFormat:@"%@ %@",result,@"Before and after binary operations should be a values!\n"];
+                result = [NSString stringWithFormat:@"%@ %@",result,@"Value BinaryOperation Value\n"];
         }
     }
     //for brackets
@@ -125,13 +125,13 @@
         {
             [stack addObject:@"("];
             if ([givenArray[i+1] isEqualToString:@")"])
-                tempresult = @" Should be value in brackets!\n";
+                tempresult = @" No value in brackets!\n";
             else if (i != 0)
             {
                 if ([givenArray[i-1] isEqualToString:@""]){}
                     
                 else if (![allOperations containsObject:givenArray[i-1]])
-                    tempresult = @" Should be operation before brackets!\n";
+                    tempresult = @" No operation before brackets!\n";
             }
             
         }
