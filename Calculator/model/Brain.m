@@ -154,9 +154,9 @@
     NSNumber* number = [numberFormatter numberFromString:string];
     
     if (number != nil)
-        return true;
+        return YES;
     else
-        return false;
+        return NO;
 }
 //------------------------------------------------------------------------------setting result
 -(void)setResultBefore:(NSString *)taga

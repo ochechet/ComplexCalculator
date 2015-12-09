@@ -10,7 +10,7 @@
 #import "Brain.h"
 
 
-@interface ViewController : UIViewController <UIAlertViewDelegate> 
+@interface ViewController : UIViewController <UIAlertViewDelegate>
 
 
 

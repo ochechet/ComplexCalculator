@@ -46,7 +46,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *unaryOperationButtonFactr;
 @property (strong, nonatomic) IBOutlet UIButton *unaryOperationButtonExp;
 
-    //[self.labelResult.text length]<INFINITY;
+
 - (IBAction)divideButton:(id)sender;
 - (IBAction)multiplyButton:(id)sender;
 - (IBAction)minusButton:(id)sender;
@@ -542,58 +542,6 @@
         [self.resultButton setTitle:@"=" forState:normal];
     });
     
-    
-    /*UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Math expression, you tiped is INVALID"
-                                  message:[NSString stringWithFormat:@"%@\n%@",message,@"What sould be done?"]
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertController * HelpInfo=   [UIAlertController
-                                     alertControllerWithTitle:@"Syntax tutorial"
-                                     message:@" Before and after binary operators:\n+ - * / log v ^\n should be a value(in brackets or not)\n'log' syntax: (base) log (value)\n\n Before unary operators:\nsin cos tg ctg ln lg ! exp\n should be operations or none, and after them should pass a value.\n  'exp' - is 'e' powered to value"
-                                     preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* Ok = [UIAlertAction
-                         actionWithTitle:@"Thank's a lot"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    
-    UIAlertAction* deleteIt = [UIAlertAction
-                               actionWithTitle:@"Delete it"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action)
-                               {
-                                   [self.myBrain clearresult];
-                                   self.labelResult.text = [self.myBrain resultBefore];
-                                   [alert dismissViewControllerAnimated:YES completion:nil];
-                                   
-                               }];
-    UIAlertAction* doNothing = [UIAlertAction
-                                actionWithTitle:@"Do nothing"
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action)
-                                {
-                                    self.labelResult.text = [self.myBrain resultBefore];
-                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                    
-                                }];
-    UIAlertAction* showHelp = [UIAlertAction
-                               actionWithTitle:@"Show Help"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action)
-                               {
-                                   [self presentViewController:HelpInfo animated:YES completion:nil];
-                                   
-                               }];
-    [alert addAction:deleteIt];
-    [alert addAction:doNothing];
-    [alert addAction:showHelp];
-    [HelpInfo addAction:Ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];*/
 }
 
 
