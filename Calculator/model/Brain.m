@@ -290,13 +290,13 @@
                 break;
         }
 
-        for(int i = startElement+1; i < endElement; i++)//logic without brackets
+        for(int i = (int)startElement+1; i < endElement; i++)//logic without brackets
         {
                 [thatValues addObject:values[i]];
         }
         
         values[startElement]=[self SplitTheOperations:thatValues];
-        for (int i = endElement; i > startElement; i--)
+        for (int i = (int)endElement; i > startElement; i--)
         {
                 [values removeObjectAtIndex:i];
         }

@@ -535,11 +535,11 @@
     
     double delayInSeconds = 3.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    __weak __typeof(self) weakSelf = self;
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
     {
-        //code to be executed on the main queue after delay
-        [self.labelResult setBackgroundColor:[UIColor lightGrayColor]];
-        [self.resultButton setTitle:@"=" forState:normal];
+        [weakSelf.labelResult setBackgroundColor:[UIColor lightGrayColor]];
+        [weakSelf.resultButton setTitle:@"=" forState:normal];
     });
     
 }
