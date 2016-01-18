@@ -97,13 +97,13 @@
 @implementation ViewController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.myBrain = [Brain singleton];
     
-    [self.myBrain clearresult];
-    self.labelResult.text = [self.myBrain resultBefore];
+    self.labelResult.text = [self.myBrain result];
     [self.operationButtonSqr setTitle:@"\u221a" forState:UIControlStateNormal];
     [self.unaryOperationButtonsSqrt setTitle:@"²\u221a" forState:UIControlStateNormal];
     [self.unaryOperationButtonPow2 setTitle:@"^²" forState:UIControlStateNormal];
@@ -111,6 +111,24 @@
     [self operationbuttonDisabeling];
     [self bracketsDisabeling:@"right"];
     [self leftOperandunaryOperationbuttonDisabeling];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveData)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveData)
+                                                 name:UIApplicationWillTerminateNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(restoreData)
+                                                 name:UIApplicationDidFinishLaunchingNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(restoreData)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
 }
 
 
@@ -118,6 +136,16 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)saveData
+{
+    [self.myBrain saveResult];
+}
+
+- (void)restoreData
+{
+    [self.myBrain restoreResult];
+    self.labelResult.text = [self.myBrain result];
+}
 
 - (void)bracketsDisabeling:(NSString*)which
 {
@@ -128,7 +156,7 @@
 }
 - (BOOL)isRightBracketMissing
 {
-    NSArray *content = [self.myBrain.resultBefore componentsSeparatedByString:@" "];
+    NSArray *content = [self.myBrain.result componentsSeparatedByString:@" "];
     NSInteger leftcounter = 0;
     NSInteger rightcounter = 0;
     for (int i = 0; i < [content count]-1; i++)
@@ -295,7 +323,7 @@
 - (IBAction)clearButton:(id)sender
 {
     [self.myBrain clearresult];
-    self.labelResult.text = [self.myBrain resultBefore];
+    self.labelResult.text = [self.myBrain result];
     [self operationbuttonDisabeling];
     [self bracketsEnabeling:@"left"];
     [self bracketsDisabeling:@"right"];
@@ -307,7 +335,7 @@
 - (IBAction)deleteButton:(id)sender
 {
     [self.myBrain deleteLast];
-    self.labelResult.text = [self.myBrain resultBefore];
+    self.labelResult.text = [self.myBrain result];
     if ([self.labelResult.text isEqualToString:@""])
     {
         [self operationbuttonDisabeling];
@@ -323,16 +351,16 @@
     if (sender.tag == 314)
     {
         double taga = M_PI;
-        [self.myBrain setResultBefore:[NSString stringWithFormat:@"%f", taga]];
+        [self.myBrain setResult:[NSString stringWithFormat:@"%f", taga]];
     }
     else
     {
         long taga;
         taga = sender.tag;
-        [self.myBrain setResultBefore:[NSString stringWithFormat:@"%li", taga]];
+        [self.myBrain setResult:[NSString stringWithFormat:@"%li", taga]];
     }
 
-    self.labelResult.text = [self.myBrain resultBefore];
+    self.labelResult.text = [self.myBrain result];
     
     [self operationbuttonEnabeling];
     [self unaryOperationbuttonDisabeling];
@@ -343,8 +371,8 @@
 }
 - (IBAction)dotButtClick:(id)sender
 {
-    [self.myBrain setResultBefore:[NSString stringWithFormat:@"%@", @"."]];
-    self.labelResult.text = [self.myBrain resultBefore];
+    [self.myBrain setResult:[NSString stringWithFormat:@"%@", @"."]];
+    self.labelResult.text = [self.myBrain result];
     [self operationbuttonDisabeling];
     [self unaryOperationbuttonDisabeling];
     [self bracketsDisabeling:@"left"];
@@ -355,8 +383,8 @@
 -(void)setsettingsForOperations:(NSString*)operationTag
 {
     [self.myBrain setOperationPressed:true];
-    [self.myBrain setResultBefore:[NSString stringWithFormat:@"%@", operationTag]];
-    self.labelResult.text = [self.myBrain resultBefore];
+    [self.myBrain setResult:[NSString stringWithFormat:@"%@", operationTag]];
+    self.labelResult.text = [self.myBrain result];
     [self.myBrain setOperationPressed:false];
 }
 -(void)setbehaviorForBinaryOperations
@@ -486,8 +514,8 @@
 - (IBAction)rightBreaketButton:(id)sender
 {
     [self.myBrain setOperationPressed:true];
-    [self.myBrain setResultBefore:[NSString stringWithFormat:@"%@", @")"]];
-    self.labelResult.text = [self.myBrain resultBefore];
+    [self.myBrain setResult:[NSString stringWithFormat:@"%@", @")"]];
+    self.labelResult.text = [self.myBrain result];
     [self bracketsDisabeling:@"left"];
     [self bracketsEnabeling:@"right"];
     [self inputingNumbersDisabeling];
@@ -513,7 +541,7 @@
             @try
             {
                 [self.myBrain setTotalResult:[self.myBrain countResult]];
-                self.labelResult.text = [self.myBrain resultBefore];
+                self.labelResult.text = [self.myBrain result];
             }
             @catch (NSString* error)
             {

@@ -11,7 +11,7 @@
 @interface Brain : NSObject
 
 @property(nonatomic) BOOL operationPressed;
-@property(strong, nonatomic) NSString *resultBefore;
+@property(strong, nonatomic) NSString *result;
 +(Brain*)singleton;
 
 -(NSString*)Validate;
@@ -19,4 +19,8 @@
 -(void)clearresult;
 -(void)deleteLast;
 -(void)setTotalResult:(NSString*)result;
+
+- (void)saveResult;
+- (void)restoreResult;
+
 @end

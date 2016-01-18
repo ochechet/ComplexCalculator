@@ -21,6 +21,36 @@
 
 @implementation Brain
 
+
++(Brain*)singleton
+{
+    static Brain* thisBrain = nil;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        thisBrain = [[self alloc] init];
+    });
+    
+    return thisBrain;
+}
+
+- (void)saveResult
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.result forKey:@"result"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)restoreResult
+{
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"result"])
+        self.result = [[NSUserDefaults standardUserDefaults] stringForKey:@"result"];
+}
+
+
+
+
+
 -(double) anylog:(double)base :(double)x
 {
     return(log(x) / log(base));
@@ -36,7 +66,7 @@
 //-------------------------------------------------------------------------------Validation
 -(NSString*)Validate
 {
-    NSMutableArray *givenArray = [[self.resultBefore componentsSeparatedByString:@" "] mutableCopy];
+    NSMutableArray *givenArray = [[self.result componentsSeparatedByString:@" "] mutableCopy];
     NSString *result = [[NSString alloc] init];
     NSSet *unaryOperations = [[NSSet alloc] initWithObjects:@"sin",@"cos",@"tg",@"ctg",@"ln",@"lg",@"exp", nil];
     NSSet *binaryOperations = [[NSSet alloc] initWithObjects:@"+",@"-",@"*",@"/",@"v",@"log",@"^", nil];
@@ -159,78 +189,65 @@
         return NO;
 }
 //------------------------------------------------------------------------------setting result
--(void)setResultBefore:(NSString *)taga
+-(void)setResult:(NSString *)taga
 {
     NSSet *binaryOperations = [[NSSet alloc] initWithObjects:@"+",@"-",@"*",@"/",@"v",@"log",@"^", nil];
-    if (!_operationPressed&&(_resultBefore == nil||[_resultBefore isEqualToString:@""]))//8
+    if (!_operationPressed&&(_result == nil||[_result isEqualToString:@""]))//8
     {
         if ([taga isEqualToString:@"."])
-            _resultBefore = [NSString stringWithFormat:@"0%@",taga];
+            _result = [NSString stringWithFormat:@"0%@",taga];
         else
-            _resultBefore = [NSString stringWithFormat:@"%@",taga];
+            _result = [NSString stringWithFormat:@"%@",taga];
     }
     
-    else if (_operationPressed&&(_resultBefore == nil||[_resultBefore isEqualToString:@""]))//+8
+    else if (_operationPressed&&(_result == nil||[_result isEqualToString:@""]))//+8
     {
         if ([binaryOperations containsObject:taga])
-            _resultBefore = [NSString stringWithFormat:@"0 %@ ",taga];
+            _result = [NSString stringWithFormat:@"0 %@ ",taga];
         else
-            _resultBefore = [NSString stringWithFormat:@"%@ ",taga];
+            _result = [NSString stringWithFormat:@"%@ ",taga];
     }
     
-    else if (_operationPressed&&(_resultBefore != nil||![_resultBefore isEqualToString:@""])&&![_resultBefore hasSuffix:@" "])//8+
-        _resultBefore = [NSString stringWithFormat:@"%@ %@ ",_resultBefore,taga];
+    else if (_operationPressed&&(_result != nil||![_result isEqualToString:@""])&&![_result hasSuffix:@" "])//8+
+        _result = [NSString stringWithFormat:@"%@ %@ ",_result,taga];
     
-    else if (_operationPressed&&(_resultBefore != nil||![_resultBefore isEqualToString:@""])&&[_resultBefore hasSuffix:@" "])//+ + e.g. in right side of operations there is " "
-        _resultBefore = [NSString stringWithFormat:@"%@%@ ",_resultBefore,taga];
+    else if (_operationPressed&&(_result != nil||![_result isEqualToString:@""])&&[_result hasSuffix:@" "])//+ + e.g. in right side of operations there is " "
+        _result = [NSString stringWithFormat:@"%@%@ ",_result,taga];
     
     else
-        _resultBefore = [NSString stringWithFormat:@"%@%@",_resultBefore,taga];
+        _result = [NSString stringWithFormat:@"%@%@",_result,taga];
 }
 
 -(void)clearresult
 {
     _operationPressed = false;
-    _resultBefore = @"";
+    _result = @"";
 }
 
 -(void)deleteLast
 {
-    NSMutableArray *givenArray = [[self.resultBefore componentsSeparatedByString:@" "] mutableCopy];
+    NSMutableArray *givenArray = [[self.result componentsSeparatedByString:@" "] mutableCopy];
     [givenArray removeObject:@""];
-    if ([_resultBefore length] > 0)
+    if ([_result length] > 0)
     {
-        if ([[_resultBefore substringFromIndex:[_resultBefore length]-1] isEqualToString: @" "])
+        if ([[_result substringFromIndex:[_result length]-1] isEqualToString: @" "])
         {
             [givenArray removeObjectAtIndex:[givenArray count]-1];
-            _resultBefore = [givenArray componentsJoinedByString:@" "];
+            _result = [givenArray componentsJoinedByString:@" "];
         }
         
         
         else
-            _resultBefore = [_resultBefore substringToIndex:[_resultBefore length] - 1];
+            _result = [_result substringToIndex:[_result length] - 1];
     }
 }
 
 -(void)setTotalResult:(NSString*)result
 {
     _operationPressed = false;
-    _resultBefore = result;
+    _result = result;
 }
 
-//-----------------------------------------------------------singleton
-+(Brain*)singleton
-{
-    static Brain* thisBrain = nil;
-    
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        thisBrain = [[self alloc] init];
-   });
-    
-    return thisBrain;
-}
 
 
 //=====================================================================================
@@ -238,7 +255,7 @@
 
 -(NSString*)countResult
 {
-    NSMutableArray *values = [[self.resultBefore componentsSeparatedByString:@" "] mutableCopy];
+    NSMutableArray *values = [[self.result componentsSeparatedByString:@" "] mutableCopy];
         for (NSString* value in values)
         {
             if (values.count == 1)

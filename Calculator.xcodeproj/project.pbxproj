@@ -104,8 +104,8 @@
 		260C32EE1BFF277C00A776E9 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				260C32F21BFF277C00A776E9 /* AppDelegate.h */,
-				260C32F31BFF277C00A776E9 /* AppDelegate.m */,
+				26FAB2591C035504007FD4EB /* Brain.h */,
+				26FAB25A1C035504007FD4EB /* Brain.m */,
 				260C32F51BFF277C00A776E9 /* ViewController.h */,
 				260C32F61BFF277C00A776E9 /* ViewController.m */,
 				260C32F81BFF277C00A776E9 /* Main.storyboard */,
@@ -113,8 +113,6 @@
 				260C32FD1BFF277C00A776E9 /* LaunchScreen.storyboard */,
 				260C33001BFF277C00A776E9 /* Info.plist */,
 				260C32EF1BFF277C00A776E9 /* Supporting Files */,
-				26FAB2591C035504007FD4EB /* Brain.h */,
-				26FAB25A1C035504007FD4EB /* Brain.m */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -122,6 +120,8 @@
 		260C32EF1BFF277C00A776E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				260C32F21BFF277C00A776E9 /* AppDelegate.h */,
+				260C32F31BFF277C00A776E9 /* AppDelegate.m */,
 				260C32F01BFF277C00A776E9 /* main.m */,
 			);
 			name = "Supporting Files";
