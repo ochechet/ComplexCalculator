@@ -16,6 +16,11 @@
 		260C330A1BFF277D00A776E9 /* CalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 260C33091BFF277D00A776E9 /* CalculatorTests.m */; };
 		260C33151BFF277D00A776E9 /* CalculatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 260C33141BFF277D00A776E9 /* CalculatorUITests.m */; };
 		26FAB25B1C035504007FD4EB /* Brain.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FAB25A1C035504007FD4EB /* Brain.m */; };
+		E701F07F1DABAAE800330673 /* CTHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F07E1DABAAE800330673 /* CTHMainViewController.m */; };
+		E701F0821DABABFB00330673 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F0811DABABFB00330673 /* Constants.m */; };
+		E701F0851DABB14B00330673 /* CTHIntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F0841DABB14B00330673 /* CTHIntegralViewController.m */; };
+		E701F0881DABC88400330673 /* CTHIpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F0871DABC88400330673 /* CTHIpViewController.m */; };
+		E701F08C1DABC8FE00330673 /* CTHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F08B1DABC8FE00330673 /* CTHBaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,16 @@
 		260C33161BFF277D00A776E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26FAB2591C035504007FD4EB /* Brain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Brain.h; path = model/Brain.h; sourceTree = "<group>"; };
 		26FAB25A1C035504007FD4EB /* Brain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Brain.m; path = model/Brain.m; sourceTree = "<group>"; };
+		E701F07D1DABAAE800330673 /* CTHMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHMainViewController.h; sourceTree = "<group>"; };
+		E701F07E1DABAAE800330673 /* CTHMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHMainViewController.m; sourceTree = "<group>"; };
+		E701F0801DABABFB00330673 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		E701F0811DABABFB00330673 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		E701F0831DABB14B00330673 /* CTHIntegralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIntegralViewController.h; sourceTree = "<group>"; };
+		E701F0841DABB14B00330673 /* CTHIntegralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIntegralViewController.m; sourceTree = "<group>"; };
+		E701F0861DABC88400330673 /* CTHIpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpViewController.h; sourceTree = "<group>"; };
+		E701F0871DABC88400330673 /* CTHIpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIpViewController.m; sourceTree = "<group>"; };
+		E701F08A1DABC8FE00330673 /* CTHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHBaseViewController.h; sourceTree = "<group>"; };
+		E701F08B1DABC8FE00330673 /* CTHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHBaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +119,7 @@
 		260C32EE1BFF277C00A776E9 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				E701F0891DABC8D500330673 /* ViewControllers */,
 				26FAB2591C035504007FD4EB /* Brain.h */,
 				26FAB25A1C035504007FD4EB /* Brain.m */,
 				260C32F51BFF277C00A776E9 /* ViewController.h */,
@@ -113,6 +129,8 @@
 				260C32FD1BFF277C00A776E9 /* LaunchScreen.storyboard */,
 				260C33001BFF277C00A776E9 /* Info.plist */,
 				260C32EF1BFF277C00A776E9 /* Supporting Files */,
+				E701F0801DABABFB00330673 /* Constants.h */,
+				E701F0811DABABFB00330673 /* Constants.m */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -143,6 +161,21 @@
 				260C33161BFF277D00A776E9 /* Info.plist */,
 			);
 			path = CalculatorUITests;
+			sourceTree = "<group>";
+		};
+		E701F0891DABC8D500330673 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E701F07D1DABAAE800330673 /* CTHMainViewController.h */,
+				E701F07E1DABAAE800330673 /* CTHMainViewController.m */,
+				E701F0831DABB14B00330673 /* CTHIntegralViewController.h */,
+				E701F0841DABB14B00330673 /* CTHIntegralViewController.m */,
+				E701F0861DABC88400330673 /* CTHIpViewController.h */,
+				E701F0871DABC88400330673 /* CTHIpViewController.m */,
+				E701F08A1DABC8FE00330673 /* CTHBaseViewController.h */,
+				E701F08B1DABC8FE00330673 /* CTHBaseViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,8 +310,13 @@
 			files = (
 				260C32F71BFF277C00A776E9 /* ViewController.m in Sources */,
 				260C32F41BFF277C00A776E9 /* AppDelegate.m in Sources */,
+				E701F07F1DABAAE800330673 /* CTHMainViewController.m in Sources */,
 				26FAB25B1C035504007FD4EB /* Brain.m in Sources */,
 				260C32F11BFF277C00A776E9 /* main.m in Sources */,
+				E701F08C1DABC8FE00330673 /* CTHBaseViewController.m in Sources */,
+				E701F0851DABB14B00330673 /* CTHIntegralViewController.m in Sources */,
+				E701F0821DABABFB00330673 /* Constants.m in Sources */,
+				E701F0881DABC88400330673 /* CTHIpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
