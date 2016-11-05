@@ -10,7 +10,9 @@
 
 @implementation Constants
 
-NSString * const kToIntegralViewControllerSegue = @"toIntegralViewControllerSegue";
+NSString * const kUnwindFormMainToIntegralSegue = @"unwindFromMainToIntegralSegue";
 NSString * const kToIpViewControllerSegue = @"toIpViewControllerSegue";
+NSString * const kUnwindFormIpToMainViewController = @"unwindFromIpToMainSegue";
+NSString * const kFromIntegralToMainSegue = @"fromIntegralToMainSegue";
 
 @end

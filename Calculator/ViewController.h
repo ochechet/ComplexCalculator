@@ -1,19 +1,19 @@
+////
+////  ViewController.h
+////  Calculator
+////
+////  Created by Olexander_Chechetkin on 11/20/15.
+////  Copyright © 2015 Olexander_Chechetkin. All rights reserved.
+////
 //
-//  ViewController.h
-//  Calculator
+//#import <UIKit/UIKit.h>
+//#import "CTHGeneralCalculator.h"
 //
-//  Created by Olexander_Chechetkin on 11/20/15.
-//  Copyright © 2015 Olexander_Chechetkin. All rights reserved.
 //
-
-#import <UIKit/UIKit.h>
-#import "Brain.h"
-
-
-@interface ViewController : UIViewController <UIAlertViewDelegate>
-
-
-
-
-@end
-
+//@interface ViewController : UIViewController <UIAlertViewDelegate>
+//
+//
+//
+//
+//@end
+//

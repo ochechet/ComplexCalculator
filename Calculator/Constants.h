@@ -10,7 +10,9 @@
 
 @interface Constants : NSObject
 
-extern NSString * const kToIntegralViewControllerSegue;
+extern NSString * const kUnwindFormMainToIntegralSegue;
 extern NSString * const kToIpViewControllerSegue;
+extern NSString * const kUnwindFormIpToMainViewController;
+extern NSString * const kFromIntegralToMainSegue;
 
 @end

@@ -7,20 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CTHCalculatorBase.h"
 
-@interface Brain : NSObject
+@interface CTHGeneralCalculator : NSObject//CTHCalculatorBase
+
++ (CTHGeneralCalculator *) sharedCalculator;
 
 @property(nonatomic) BOOL operationPressed;
 @property(strong, nonatomic) NSString *result;
-+(Brain*)singleton;
 
 -(NSString*)Validate;
 -(NSString*)countResult;
 -(void)clearresult;
 -(void)deleteLast;
 -(void)setTotalResult:(NSString*)result;
-
-- (void)saveResult;
-- (void)restoreResult;
 
 @end

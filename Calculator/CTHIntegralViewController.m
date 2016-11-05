@@ -7,8 +7,18 @@
 //
 
 #import "CTHIntegralViewController.h"
+#import "Constants.h"
 
 @implementation CTHIntegralViewController
 
+- (IBAction)rightEdgeBeenPanned:(UIScreenEdgePanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [self performSegueWithIdentifier:kFromIntegralToMainSegue sender:self];
+    }
+}
+
+- (IBAction)unwindToIntegralViewController:(UIStoryboardSegue *)segue {
+    
+}
 
 @end

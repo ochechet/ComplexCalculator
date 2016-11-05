@@ -6,50 +6,36 @@
 //  Copyright © 2015 Olexander_Chechetkin. All rights reserved.
 //
 
-#import "Brain.h"
+#import "CTHGeneralCalculator.h"
+#import "CTHPersistantStoreManager.h"
 
-@interface Brain()
+static NSString * const kGeneralCalculatorPersistantString = @"generalCalculatorPersistantString";
 
+@interface CTHGeneralCalculator()
 
--(NSString*)SplitTheOperations:(NSArray*)values;
--(NSString*)chousinOperationWhith:(NSString*)FirstOperand :(NSString*)Operation :(NSString*)SecondOperation;
--(double) anylog:(double)base :(double)x;
--(double) factr:(double)x;
--(BOOL)isNum:(NSString*)string;
+@property (strong, nonatomic) CTHPersistantStoreManager *manager;
 
 @end
 
-@implementation Brain
+@implementation CTHGeneralCalculator
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.manager = [CTHPersistantStoreManager sharedManager];
+        _result = [self.manager getPersistedStringForKey:kGeneralCalculatorPersistantString];
+    }
+    return self;
+}
 
-+(Brain*)singleton
-{
-    static Brain* thisBrain = nil;
-    
++ (CTHGeneralCalculator *)sharedCalculator {
+    static CTHGeneralCalculator* instance = nil;
     static dispatch_once_t onceToken;
-    
     dispatch_once(&onceToken, ^{
-        thisBrain = [[self alloc] init];
+        instance = [[CTHGeneralCalculator alloc] init];
     });
-    
-    return thisBrain;
+    return instance;
 }
-
-- (void)saveResult
-{
-    [[NSUserDefaults standardUserDefaults] setObject:self.result forKey:@"result"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)restoreResult
-{
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"result"])
-        self.result = [[NSUserDefaults standardUserDefaults] stringForKey:@"result"];
-}
-
-
-
-
 
 -(double) anylog:(double)base :(double)x
 {
@@ -216,6 +202,7 @@
     
     else
         _result = [NSString stringWithFormat:@"%@%@",_result,taga];
+    [self.manager setStringToPersist:_result forKey:kGeneralCalculatorPersistantString];
 }
 
 -(void)clearresult
