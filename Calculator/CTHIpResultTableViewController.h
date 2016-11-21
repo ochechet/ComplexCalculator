@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTHIpResultModel.h"
 
 @interface CTHIpResultTableViewController : UITableViewController
+
+@property (strong, nonatomic) CTHIpResultModel *resultModel;
 
 @end

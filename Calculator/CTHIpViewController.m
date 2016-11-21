@@ -8,7 +8,10 @@
 
 #import "CTHIpViewController.h"
 #import "CTHIpCalculator.h"
+#import "CTHIpResultTableViewController.h"
 #import "Constants.h"
+
+static NSString *const kToIpResultSegue = @"toIpResultSegue";
 
 @interface CTHIpViewController ()
 
@@ -16,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *macAddressField;
 
 @property (strong, nonatomic) CTHIpCalculator *calculator;
+@property (strong, nonatomic) CTHIpResultModel *resultModel;
 
 @end
 
@@ -51,7 +55,16 @@
 }
 
 - (IBAction)calculateButtonPressed:(id)sender {
-    
+    self.resultModel = [self.calculator calculate];
+    [self performSegueWithIdentifier:kToIpResultSegue sender:self];
+}
+
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:kToIpResultSegue]) {
+        CTHIpResultTableViewController *controller = segue.destinationViewController;
+        controller.resultModel = self.resultModel;
+    }
 }
 
 @end

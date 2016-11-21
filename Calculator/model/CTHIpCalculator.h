@@ -7,13 +7,15 @@
 //
 
 #import "CTHCalculatorBase.h"
+#import "CTHIpResultModel.h"
 
-@interface CTHIpCalculator : NSObject//CTHCalculatorBase
+@interface CTHIpCalculator : NSObject
 
 @property(strong, nonatomic) NSString *ipAddressString;
-@property(strong, nonatomic) NSString *macAdressString;
+@property(strong, nonatomic) NSString *mascAdressString;
 
 - (void)refresh;
 - (void)persist;
+- (CTHIpResultModel *)calculate;
 
 @end

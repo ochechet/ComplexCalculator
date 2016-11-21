@@ -8,6 +8,7 @@
 
 #import "CTHIpCalculator.h"
 #import "CTHPersistantStoreManager.h"
+#import "CTHBinaryFormatter.h"
 
 static NSString * const kIpAddressPersistantString = @"ipAddressPersistantString";
 static NSString * const kMacAddressPersistantString = @"macAddressPersistantString";
@@ -29,9 +30,49 @@ static NSString * const kMacAddressPersistantString = @"macAddressPersistantStri
     return self;
 }
 
+- (CTHIpResultModel *)calculate {
+    NSString *networkAddress = [self networkAddress];
+    
+    
+    
+    
+    return [self resultModel];
+}
+
+- (NSString *)networkAddress {
+    NSString *binaryIp = [CTHBinaryFormatter decToBinary:[self.ipAddressString integerValue]];
+    NSString *binaryMasc = [CTHBinaryFormatter decToBinary:[self.mascAdressString integerValue]];
+    unsigned int len = [binaryMasc length];
+    char buffer[len];
+    [binaryMasc getCharacters:buffer range:NSMakeRange(0, len)];
+    int i;
+    for(i = 0; i < len; ++i) {
+        if (buffer[i] == 0) {
+            break;
+        }
+    }
+    NSString *networkAddressBinary = [binaryIp substringToIndex:i];
+    return [NSString stringWithFormat:@"%u",[CTHBinaryFormatter binaryToInt:networkAddressBinary]];
+}
+
+- (CTHIpResultModel *)resultModel {
+    CTHIpResultModel *model = [[CTHIpResultModel alloc] init];
+#warning incomplete
+    model.ipAddress = self.ipAddressString;
+    model.ipAddressBinary = [CTHBinaryFormatter decToBinary:[self.ipAddressString integerValue]];
+    model.mascAdress = [NSString stringWithFormat:@"%u",[CTHBinaryFormatter binaryToInt:model.ipAddressBinary]];
+    model.mascAdressBinary = @"MAC00011100011";
+    model.networkAddress = @"172.172.172";
+    model.networkAddressBinary = @"network00011100011";
+    model.hostAddress = @"121";
+    model.hostAddressBinary = @"host00011100011";
+    return model;
+}
+
+#pragma mark - Persistance
 - (void)refresh {
     _ipAddressString = [self.manager getPersistedStringForKey:kIpAddressPersistantString];
-    _macAdressString = [self.manager getPersistedStringForKey:kMacAddressPersistantString];
+    _mascAdressString = [self.manager getPersistedStringForKey:kMacAddressPersistantString];
 }
 
 - (void)persist {
@@ -40,10 +81,12 @@ static NSString * const kMacAddressPersistantString = @"macAddressPersistantStri
 
 - (void)setIpAddressString:(NSString *)ipAddressString {
     [self.manager setStringToPersist:ipAddressString forKey:kIpAddressPersistantString];
+    _ipAddressString = ipAddressString;
 }
 
-- (void)setMacAdressString:(NSString *)macAdressString {
+- (void)setMascAdressString:(NSString *)mascAdressString {
     [self.manager setStringToPersist:macAdressString forKey:kMacAddressPersistantString];
+    _mascAdressString = macAdressString;
 }
 
 @end
