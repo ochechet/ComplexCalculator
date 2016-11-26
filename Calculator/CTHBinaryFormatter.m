@@ -18,6 +18,9 @@
         string = [[NSString stringWithFormat: @"%u", x&1] stringByAppendingString:string];
         x = x >> 1;
     }
+    while (string.length < 8) {
+        string = [NSString stringWithFormat: @"%@%d", string, 0];
+    }
     return string;
 }
 

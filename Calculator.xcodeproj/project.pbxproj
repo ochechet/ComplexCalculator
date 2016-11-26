@@ -26,6 +26,7 @@
 		FA864A351DCF5FF90080A718 /* CTHIpResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA864A341DCF5FF90080A718 /* CTHIpResultModel.m */; };
 		FABB7BBC1DCE78C40001F67B /* CTHIpResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBB1DCE78C40001F67B /* CTHIpResultTableViewController.m */; };
 		FABB7BC01DCE7EB40001F67B /* CTHIpCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */; };
+		FAD207CA1DEA0830000030E4 /* CTHOctetedBinary.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		FABB7BBB1DCE78C40001F67B /* CTHIpResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIpResultTableViewController.m; sourceTree = "<group>"; };
 		FABB7BBE1DCE7EB40001F67B /* CTHIpCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTHIpCalculator.h; path = model/CTHIpCalculator.h; sourceTree = "<group>"; };
 		FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTHIpCalculator.m; path = model/CTHIpCalculator.m; sourceTree = "<group>"; };
+		FAD207C81DEA0830000030E4 /* CTHOctetedBinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTHOctetedBinary.h; path = model/CTHOctetedBinary.h; sourceTree = "<group>"; };
+		FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTHOctetedBinary.m; path = model/CTHOctetedBinary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 				FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */,
 				FA864A331DCF5FF90080A718 /* CTHIpResultModel.h */,
 				FA864A341DCF5FF90080A718 /* CTHIpResultModel.m */,
+				FAD207C81DEA0830000030E4 /* CTHOctetedBinary.h */,
+				FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */,
 			);
 			name = IP;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				260C32F71BFF277C00A776E9 /* ViewController.m in Sources */,
 				FABB7BBC1DCE78C40001F67B /* CTHIpResultTableViewController.m in Sources */,
 				FABB7BC01DCE7EB40001F67B /* CTHIpCalculator.m in Sources */,
+				FAD207CA1DEA0830000030E4 /* CTHOctetedBinary.m in Sources */,
 				260C32F41BFF277C00A776E9 /* AppDelegate.m in Sources */,
 				FA5FBBC91DC633410095D86E /* CTHCalculatorBase.m in Sources */,
 				E701F07F1DABAAE800330673 /* CTHMainViewController.m in Sources */,

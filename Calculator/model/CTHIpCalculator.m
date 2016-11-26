@@ -1,4 +1,4 @@
-//
+	//
 //  CTHIpCalculator.m
 //  Calculator
 //
@@ -9,6 +9,7 @@
 #import "CTHIpCalculator.h"
 #import "CTHPersistantStoreManager.h"
 #import "CTHBinaryFormatter.h"
+#import "CTHOctetedBinary.h"
 
 static NSString * const kIpAddressPersistantString = @"ipAddressPersistantString";
 static NSString * const kMacAddressPersistantString = @"macAddressPersistantString";
@@ -16,6 +17,9 @@ static NSString * const kMacAddressPersistantString = @"macAddressPersistantStri
 @interface CTHIpCalculator()
 
 @property (strong, nonatomic) CTHPersistantStoreManager *manager;
+@property (strong, nonatomic) CTHOctetedBinary *octetedIp;
+@property (strong, nonatomic) CTHOctetedBinary *octetedMask;
+@property (strong, nonatomic) CTHOctetedBinary *octetedNetworkAddress;
 
 @end
 
@@ -30,29 +34,48 @@ static NSString * const kMacAddressPersistantString = @"macAddressPersistantStri
     return self;
 }
 
-- (CTHIpResultModel *)calculate {
-    NSString *networkAddress = [self networkAddress];
-    
-    
-    
-    
-    return [self resultModel];
+- (void)calculateWithCompletion:(void(^)(CTHIpResultModel *model))completion {
+    __weak typeof (self) weakSelf = self;
+    [self calculateNetworkInformation:^(NSString *binaryIp, CTHOctetedBinary *octetedNetwork) {
+#warning HERE we are
+    }];
 }
 
-- (NSString *)networkAddress {
-    NSString *binaryIp = [CTHBinaryFormatter decToBinary:[self.ipAddressString integerValue]];
-    NSString *binaryMasc = [CTHBinaryFormatter decToBinary:[self.mascAdressString integerValue]];
-    unsigned int len = [binaryMasc length];
-    char buffer[len];
-    [binaryMasc getCharacters:buffer range:NSMakeRange(0, len)];
-    int i;
-    for(i = 0; i < len; ++i) {
-        if (buffer[i] == 0) {
-            break;
+- (void)calculateNetworkInformation:(void(^)(NSString *binaryIp, CTHOctetedBinary *octetedNetwork))completion {
+    __weak typeof (self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (!weakSelf.octetedIp || !weakSelf.octetedMask) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(nil, nil);
+            });
         }
-    }
-    NSString *networkAddressBinary = [binaryIp substringToIndex:i];
-    return [NSString stringWithFormat:@"%u",[CTHBinaryFormatter binaryToInt:networkAddressBinary]];
+        NSString *fullBinaryMask = [weakSelf.octetedMask joinWithoutDots];
+        NSString *fullIp = [weakSelf.octetedIp joinWithoutDots];
+        if ((fullBinaryMask.length != FULL_BINARY_ADRESS_LENGTH) ||
+            (fullIp.length != FULL_BINARY_ADRESS_LENGTH)) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(nil, nil);
+            });
+        }
+        
+        NSMutableString *networkAddressBinary = [[NSMutableString alloc] init];
+        NSMutableString *ipAddressBinary = [[NSMutableString alloc] init];
+        for (NSInteger i = 0; i < FULL_BINARY_ADRESS_LENGTH; i++) {
+            unichar maskChar = [fullBinaryMask characterAtIndex:i];
+            unichar ipChar = [fullIp characterAtIndex:i];
+            
+            if ([@"1" isEqualToString:[NSString stringWithCharacters:&maskChar length:1]]) {
+                [networkAddressBinary appendString:[NSString stringWithCharacters:&ipChar length:1]];
+            } else {
+                [ipAddressBinary appendString:[NSString stringWithCharacters:&ipChar length:1]];
+                [networkAddressBinary appendString:@"0"];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CTHOctetedBinary *octetedNetwork = [[CTHOctetedBinary alloc] initWithBinaryString:[CTHOctetedBinary devideBinaryByDots:networkAddressBinary]];
+            completion(ipAddressBinary, octetedNetwork);
+        });
+    });
 }
 
 - (CTHIpResultModel *)resultModel {
@@ -73,6 +96,8 @@ static NSString * const kMacAddressPersistantString = @"macAddressPersistantStri
 - (void)refresh {
     _ipAddressString = [self.manager getPersistedStringForKey:kIpAddressPersistantString];
     _mascAdressString = [self.manager getPersistedStringForKey:kMacAddressPersistantString];
+    self.octetedIp = [[CTHOctetedBinary alloc] initWithString:self.ipAddressString];
+    self.octetedMask = [[CTHOctetedBinary alloc] initWithString:self.mascAdressString];
 }
 
 - (void)persist {
@@ -85,8 +110,8 @@ static NSString * const kMacAddressPersistantString = @"macAddressPersistantStri
 }
 
 - (void)setMascAdressString:(NSString *)mascAdressString {
-    [self.manager setStringToPersist:macAdressString forKey:kMacAddressPersistantString];
-    _mascAdressString = macAdressString;
+    [self.manager setStringToPersist:mascAdressString forKey:kMacAddressPersistantString];
+    _mascAdressString = mascAdressString;
 }
 
 @end

@@ -34,7 +34,7 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     [super viewWillAppear:animated];
     [self.calculator refresh];
     self.ipAddressField.text = self.calculator.ipAddressString;
-    self.macAddressField.text = self.calculator.macAdressString;
+    self.macAddressField.text = self.calculator.mascAdressString;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -51,12 +51,14 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
 }
 
 - (IBAction)macAddressFieldDidChanged:(UITextField *)sender {
-    self.calculator.macAdressString = sender.text;
+    self.calculator.mascAdressString = sender.text;
 }
 
 - (IBAction)calculateButtonPressed:(id)sender {
-    self.resultModel = [self.calculator calculate];
-    [self performSegueWithIdentifier:kToIpResultSegue sender:self];
+    __weak typeof (self) weakSelf = self;
+    [self.calculator calculateWithCompletion:^(CTHIpResultModel *model) {
+        [weakSelf performSegueWithIdentifier:kToIpResultSegue sender:weakSelf];
+    }];
 }
 
 #pragma mark - Navigation

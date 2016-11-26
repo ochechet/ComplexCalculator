@@ -16,6 +16,6 @@
 
 - (void)refresh;
 - (void)persist;
-- (CTHIpResultModel *)calculate;
+- (void)calculateWithCompletion:(void(^)(CTHIpResultModel *model))completion;
 
 @end
