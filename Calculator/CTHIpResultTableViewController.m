@@ -26,14 +26,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.ipAddressLabel.text = self.resultModel.ipAddress;
-    self.ipAddressLabelBinary.text = self.resultModel.ipAddressBinary;
-    self.maskAddressLabel.text = self.resultModel.mascAdress;
-    self.maskAddressLabelBinary.text = self.resultModel.mascAdressBinary;
-    self.networkAddressLabel.text = self.resultModel.networkAddress;
-    self.networkAddressLabelBinary.text = self.resultModel.networkAddressBinary;
-    self.hostAddressLabel.text = self.resultModel.hostAddress;
-    self.hostAddressLabelBinary.text = self.resultModel.hostAddressBinary;
+//    self.ipAddressLabel.text = self.resultModel.ipAddress;
+//    self.ipAddressLabelBinary.text = self.resultModel.ipAddressBinary;
+//    self.maskAddressLabel.text = self.resultModel.mascAdress;
+//    self.maskAddressLabelBinary.text = self.resultModel.mascAdressBinary;
+//    self.networkAddressLabel.text = self.resultModel.networkAddress;
+//    self.networkAddressLabelBinary.text = self.resultModel.networkAddressBinary;
+//    self.hostAddressLabel.text = self.resultModel.hostAddress;
+//    self.hostAddressLabelBinary.text = self.resultModel.hostAddressBinary;
 }
 
 @end

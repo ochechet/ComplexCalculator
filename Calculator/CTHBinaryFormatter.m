@@ -15,11 +15,11 @@
     NSUInteger x = decInt;
     
     while (x > 0) {
-        string = [[NSString stringWithFormat: @"%u", x&1] stringByAppendingString:string];
+        string = [[NSString stringWithFormat: @"%lu", x&1] stringByAppendingString:string];
         x = x >> 1;
     }
     while (string.length < 8) {
-        string = [NSString stringWithFormat: @"%@%d", string, 0];
+        string = [NSString stringWithFormat: @"%d%@", 0, string];
     }
     return string;
 }

@@ -22,7 +22,8 @@
 - (NSString *)joinWithoutDots;
 - (NSString *)joinWithDots;
 
-+ (NSString *)devideBinaryByDots:(NSString *)binaryString;
-+ (NSString *)devideDecimalByDots:(NSString *)decimalString;
+- (NSString *)decimalAddress;
+
++ (NSString *)devideByDots:(NSString *)binaryString;
 
 @end

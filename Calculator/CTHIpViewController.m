@@ -13,10 +13,10 @@
 
 static NSString *const kToIpResultSegue = @"toIpResultSegue";
 
-@interface CTHIpViewController ()
+@interface CTHIpViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *ipAddressField;
-@property (weak, nonatomic) IBOutlet UITextField *macAddressField;
+@property (weak, nonatomic) IBOutlet UIPickerView *maAddressPicker;
 
 @property (strong, nonatomic) CTHIpCalculator *calculator;
 @property (strong, nonatomic) CTHIpResultModel *resultModel;
@@ -34,7 +34,7 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     [super viewWillAppear:animated];
     [self.calculator refresh];
     self.ipAddressField.text = self.calculator.ipAddressString;
-    self.macAddressField.text = self.calculator.mascAdressString;
+    //self.macAddressField.text = self.calculator.mascAdressString;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -60,6 +60,24 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
         [weakSelf performSegueWithIdentifier:kToIpResultSegue sender:weakSelf];
     }];
 }
+
+#pragma mark - UIPickerView
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
+    self.calculator.mascAdressString = [self.calculator.posibleMaskAdresses objectAtIndex:row];
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.calculator.posibleMaskAdresses.count;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [self.calculator.posibleMaskAdresses objectAtIndex:row];
+}
+
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -30,9 +30,6 @@
             return nil;
         }
         for (NSString *component in componentsArray) {
-            if (component.length != DECIMAL_COMPONENT_LENGTH) {
-                return nil;
-            }
             NSString *binary = [CTHBinaryFormatter decToBinary:[component integerValue]];
             if (!binary) {
                 return nil;
@@ -61,7 +58,7 @@
     return self;
 }
 
-+ (NSString *)devideBinaryByDots:(NSString *)binaryString {
++ (NSString *)devideByDots:(NSString *)binaryString {
     if (binaryString.length != FULL_BINARY_ADRESS_LENGTH) {
         return nil;
     }
@@ -77,16 +74,26 @@
     return result;
 }
 
+- (NSString *)decimalAddress {
+    NSMutableString *decimalAddress = [[NSMutableString alloc] init];
+    for (NSInteger index = 0; index < self.octets.count; index++) {
+        NSString *octet = [self.octets objectAtIndex:index];
+        NSUInteger decimal = [CTHBinaryFormatter binaryToInt:octet];
+        if (index == self.octets.count - 1) {
+            [decimalAddress appendFormat:@"%ld",(long)decimal];
+        } else {
+            [decimalAddress appendFormat:@"%ld.",(long)decimal];
+        }
+    }
+    return decimalAddress;
+}
+
 - (NSString *)joinWithoutDots {
     return [self.octets componentsJoinedByString:@""];
 }
 
 - (NSString *)joinWithDots {
     return [self.octets componentsJoinedByString:@"."];
-}
-
-+ (NSString *)devideDecimalByDots:(NSString *)decimalString {
-    return nil;
 }
 
 @end

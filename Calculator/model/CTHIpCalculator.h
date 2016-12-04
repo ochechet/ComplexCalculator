@@ -13,6 +13,7 @@
 
 @property(strong, nonatomic) NSString *ipAddressString;
 @property(strong, nonatomic) NSString *mascAdressString;
+@property(strong, nonatomic, readonly) NSArray *posibleMaskAdresses;
 
 - (void)refresh;
 - (void)persist;

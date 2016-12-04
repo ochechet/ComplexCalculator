@@ -1218,28 +1218,27 @@
                                     <action selector="calculateButtonPressed:" destination="wqR-7O-l6z" eventType="touchUpInside" id="aI5-xC-aIJ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mask" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6LR-ir-ZTr">
-                                <rect key="frame" x="40" y="163" width="440" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ol-00-nVG">
+                                <rect key="frame" x="40" y="163" width="440" height="216"/>
                                 <connections>
-                                    <action selector="macAddressFieldDidChanged:" destination="wqR-7O-l6z" eventType="editingChanged" id="mC8-74-sEP"/>
+                                    <outlet property="dataSource" destination="wqR-7O-l6z" id="gkT-10-O5Y"/>
+                                    <outlet property="delegate" destination="wqR-7O-l6z" id="Q0o-i4-8zj"/>
                                 </connections>
-                            </textField>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Co3-jM-Pi7" firstAttribute="leading" secondItem="Dw3-mW-skf" secondAttribute="leadingMargin" constant="20" id="0Ou-Hv-tjH"/>
                             <constraint firstItem="JOz-bp-OMz" firstAttribute="leading" secondItem="Dw3-mW-skf" secondAttribute="leadingMargin" id="2dJ-Hp-8rb"/>
+                            <constraint firstItem="7ol-00-nVG" firstAttribute="top" secondItem="Co3-jM-Pi7" secondAttribute="bottom" constant="20" id="CdT-lz-2tW"/>
                             <constraint firstItem="Sks-Gt-3sm" firstAttribute="top" secondItem="ldX-0l-v3d" secondAttribute="bottom" constant="52" id="JVE-9q-clJ"/>
-                            <constraint firstItem="6LR-ir-ZTr" firstAttribute="top" secondItem="Co3-jM-Pi7" secondAttribute="bottom" constant="20" id="K3v-68-8rL"/>
                             <constraint firstItem="Co3-jM-Pi7" firstAttribute="top" secondItem="JOz-bp-OMz" secondAttribute="bottom" constant="20" id="KGr-G1-lkV"/>
+                            <constraint firstItem="7ol-00-nVG" firstAttribute="leading" secondItem="Dw3-mW-skf" secondAttribute="leadingMargin" constant="20" id="Kky-tt-AjZ"/>
                             <constraint firstItem="Sks-Gt-3sm" firstAttribute="leading" secondItem="Co3-jM-Pi7" secondAttribute="trailing" constant="20" id="N3p-UY-vbE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JOz-bp-OMz" secondAttribute="trailing" id="W4U-v1-tLB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Sks-Gt-3sm" secondAttribute="trailing" id="YwZ-1B-hDf"/>
-                            <constraint firstItem="Sks-Gt-3sm" firstAttribute="leading" secondItem="6LR-ir-ZTr" secondAttribute="trailing" constant="20" id="eyC-TP-isX"/>
-                            <constraint firstItem="6LR-ir-ZTr" firstAttribute="leading" secondItem="Dw3-mW-skf" secondAttribute="leadingMargin" constant="20" id="qww-cB-flR"/>
+                            <constraint firstItem="7ol-00-nVG" firstAttribute="width" secondItem="Co3-jM-Pi7" secondAttribute="width" id="pEG-rB-n78"/>
                             <constraint firstItem="JOz-bp-OMz" firstAttribute="top" secondItem="ldX-0l-v3d" secondAttribute="bottom" constant="8" id="x6O-oh-4Ar"/>
                             <constraint firstItem="Sks-Gt-3sm" firstAttribute="top" secondItem="JOz-bp-OMz" secondAttribute="bottom" constant="20" id="xPA-bL-U6t"/>
                         </constraints>
@@ -1266,7 +1265,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ipAddressField" destination="Co3-jM-Pi7" id="lNV-sT-Rbo"/>
-                        <outlet property="macAddressField" destination="6LR-ir-ZTr" id="2cQ-qk-Ha0"/>
+                        <outlet property="maAddressPicker" destination="7ol-00-nVG" id="pLN-o3-qSb"/>
                         <segue destination="Scg-a0-tV7" kind="show" identifier="toIpResultSegue" id="ZW4-zP-I1L"/>
                     </connections>
                 </viewController>
