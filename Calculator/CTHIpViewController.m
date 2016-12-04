@@ -34,7 +34,10 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     [super viewWillAppear:animated];
     [self.calculator refresh];
     self.ipAddressField.text = self.calculator.ipAddressString;
-    //self.macAddressField.text = self.calculator.mascAdressString;
+    NSString *maskAddress = self.calculator.mascAdressString;
+    NSInteger maskAddressRow = ([self.calculator.posibleMaskAdresses indexOfObject:maskAddress] != NSNotFound)? [self.calculator.posibleMaskAdresses indexOfObject:maskAddress]: 0;
+    [self.maAddressPicker selectRow:maskAddressRow inComponent:0 animated:YES];
+    [self pickerView:self.maAddressPicker didSelectRow:maskAddressRow inComponent:0];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -50,13 +53,10 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     self.calculator.ipAddressString = sender.text;
 }
 
-- (IBAction)macAddressFieldDidChanged:(UITextField *)sender {
-    self.calculator.mascAdressString = sender.text;
-}
-
 - (IBAction)calculateButtonPressed:(id)sender {
     __weak typeof (self) weakSelf = self;
     [self.calculator calculateWithCompletion:^(CTHIpResultModel *model) {
+        weakSelf.resultModel = model;
         [weakSelf performSegueWithIdentifier:kToIpResultSegue sender:weakSelf];
     }];
 }

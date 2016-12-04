@@ -19,5 +19,11 @@
 @property(strong, nonatomic) NSString *networkAddressBinary;
 @property(strong, nonatomic) NSString *hostAddress;
 @property(strong, nonatomic) NSString *hostAddressBinary;
+@property(strong, nonatomic) NSString *broadcast;
+@property(strong, nonatomic) NSString *broadcastBinary;
+@property(strong, nonatomic) NSString *minimalHost;
+@property(strong, nonatomic) NSString *minimalHostBinary;
+@property(strong, nonatomic) NSString *maximalHost;
+@property(strong, nonatomic) NSString *maximalHostBinary;
 
 @end
