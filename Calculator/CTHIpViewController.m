@@ -10,6 +10,7 @@
 #import "CTHIpCalculator.h"
 #import "CTHIpResultTableViewController.h"
 #import "Constants.h"
+#import "CALayer+Animations.h"
 
 static NSString *const kToIpResultSegue = @"toIpResultSegue";
 
@@ -56,13 +57,17 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
 - (IBAction)calculateButtonPressed:(id)sender {
     __weak typeof (self) weakSelf = self;
     [self.calculator calculateWithCompletion:^(CTHIpResultModel *model) {
-        weakSelf.resultModel = model;
-        [weakSelf performSegueWithIdentifier:kToIpResultSegue sender:weakSelf];
+        if (!model) {
+            [weakSelf.ipAddressField.layer animateWrongInput];
+        } else {
+            weakSelf.resultModel = model;
+            [weakSelf performSegueWithIdentifier:kToIpResultSegue sender:weakSelf];
+        }
     }];
 }
 
 #pragma mark - UIPickerView
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     self.calculator.mascAdressString = [self.calculator.posibleMaskAdresses objectAtIndex:row];
 }
 

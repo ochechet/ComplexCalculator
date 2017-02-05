@@ -36,7 +36,13 @@ static NSString * const kMacAddressPersistantString = @"macAddressPersistantStri
 - (void)calculateWithCompletion:(void(^)(CTHIpResultModel *model))completion {
     CTHOctetedBinary *octetedIp = [[CTHOctetedBinary alloc] initWithString:self.ipAddressString];
     CTHOctetedBinary *octetedMask = [[CTHOctetedBinary alloc] initWithString:self.mascAdressString];
-    [self calculateNetworkInformationWithIpAddress:octetedIp mascAddress:octetedMask completion:^(CTHOctetedBinary *octetedHost, CTHOctetedBinary *octetedNetwork, CTHOctetedBinary *octetedBroadcast, CTHOctetedBinary *octetedMinimalHost, CTHOctetedBinary *octetedMaximalHost) {
+    [self calculateNetworkInformationWithIpAddress:octetedIp
+                                       mascAddress:octetedMask
+                                        completion:^(CTHOctetedBinary *octetedHost, CTHOctetedBinary *octetedNetwork, CTHOctetedBinary *octetedBroadcast, CTHOctetedBinary *octetedMinimalHost, CTHOctetedBinary *octetedMaximalHost) {
+        if (!octetedHost || !octetedNetwork || !octetedBroadcast || !octetedMinimalHost || !octetedMaximalHost) {
+            completion(nil);
+            return ;
+        }
         CTHIpResultModel *model = [self fillModelWithIpAddressBinary:octetedIp
                                                    mascAddressBinary:octetedMask
                                                 networkAddressBinary:octetedNetwork
