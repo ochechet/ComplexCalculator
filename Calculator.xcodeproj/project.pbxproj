@@ -24,10 +24,13 @@
 		FA5FBBCC1DC634D70095D86E /* CTHPersistantStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBBCB1DC634D70095D86E /* CTHPersistantStoreManager.m */; };
 		FA62F2FF1E47B32D00CB2812 /* CALayer+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FA62F2FE1E47B32D00CB2812 /* CALayer+Animations.m */; };
 		FA6623ED1DCFABA400E7A592 /* CTHBinaryFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6623EC1DCFABA400E7A592 /* CTHBinaryFormatter.m */; };
+		FA7C0ECB1E5CD0FF0070B37A /* CTHFunctionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */; };
 		FA864A351DCF5FF90080A718 /* CTHIpResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA864A341DCF5FF90080A718 /* CTHIpResultModel.m */; };
 		FABB7BBC1DCE78C40001F67B /* CTHIpResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBB1DCE78C40001F67B /* CTHIpResultTableViewController.m */; };
 		FABB7BC01DCE7EB40001F67B /* CTHIpCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */; };
 		FAD207CA1DEA0830000030E4 /* CTHOctetedBinary.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */; };
+		FAEA43F81E59F194008ADE61 /* CTHIntegralCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA43F71E59F194008ADE61 /* CTHIntegralCalculator.m */; };
+		FAEA43FB1E5A0816008ADE61 /* CTHCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA43FA1E5A0816008ADE61 /* CTHCalculationUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,8 @@
 		FA62F2FE1E47B32D00CB2812 /* CALayer+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Animations.m"; sourceTree = "<group>"; };
 		FA6623EB1DCFABA400E7A592 /* CTHBinaryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHBinaryFormatter.h; sourceTree = "<group>"; };
 		FA6623EC1DCFABA400E7A592 /* CTHBinaryFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHBinaryFormatter.m; sourceTree = "<group>"; };
+		FA7C0EC91E5CD0FF0070B37A /* CTHFunctionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHFunctionParser.h; sourceTree = "<group>"; };
+		FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHFunctionParser.m; sourceTree = "<group>"; };
 		FA864A331DCF5FF90080A718 /* CTHIpResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpResultModel.h; sourceTree = "<group>"; };
 		FA864A341DCF5FF90080A718 /* CTHIpResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIpResultModel.m; sourceTree = "<group>"; };
 		FABB7BBA1DCE78C40001F67B /* CTHIpResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpResultTableViewController.h; sourceTree = "<group>"; };
@@ -90,6 +95,10 @@
 		FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTHIpCalculator.m; path = model/CTHIpCalculator.m; sourceTree = "<group>"; };
 		FAD207C81DEA0830000030E4 /* CTHOctetedBinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTHOctetedBinary.h; path = model/CTHOctetedBinary.h; sourceTree = "<group>"; };
 		FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTHOctetedBinary.m; path = model/CTHOctetedBinary.m; sourceTree = "<group>"; };
+		FAEA43F61E59F194008ADE61 /* CTHIntegralCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIntegralCalculator.h; sourceTree = "<group>"; };
+		FAEA43F71E59F194008ADE61 /* CTHIntegralCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIntegralCalculator.m; sourceTree = "<group>"; };
+		FAEA43F91E5A0816008ADE61 /* CTHCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHCalculationUtil.h; sourceTree = "<group>"; };
+		FAEA43FA1E5A0816008ADE61 /* CTHCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHCalculationUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,11 +208,8 @@
 		FA5FBBC61DC632FB0095D86E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA6623EB1DCFABA400E7A592 /* CTHBinaryFormatter.h */,
-				FA6623EC1DCFABA400E7A592 /* CTHBinaryFormatter.m */,
+				FAFA305A1E61A2C800FB3E81 /* Managers */,
 				FABB7BBD1DCE7A380001F67B /* Calculators */,
-				FA5FBBCA1DC634D70095D86E /* CTHPersistantStoreManager.h */,
-				FA5FBBCB1DC634D70095D86E /* CTHPersistantStoreManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -211,8 +217,12 @@
 		FA62F2FC1E47B2E100CB2812 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FA6623EB1DCFABA400E7A592 /* CTHBinaryFormatter.h */,
+				FA6623EC1DCFABA400E7A592 /* CTHBinaryFormatter.m */,
 				FA62F2FD1E47B32D00CB2812 /* CALayer+Animations.h */,
 				FA62F2FE1E47B32D00CB2812 /* CALayer+Animations.m */,
+				FAEA43F91E5A0816008ADE61 /* CTHCalculationUtil.h */,
+				FAEA43FA1E5A0816008ADE61 /* CTHCalculationUtil.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -244,6 +254,7 @@
 		FABB7BBD1DCE7A380001F67B /* Calculators */ = {
 			isa = PBXGroup;
 			children = (
+				FAEA43F51E59F126008ADE61 /* Integral */,
 				FA864A321DCF5FE20080A718 /* IP */,
 				26FAB2591C035504007FD4EB /* CTHGeneralCalculator.h */,
 				26FAB25A1C035504007FD4EB /* CTHGeneralCalculator.m */,
@@ -251,6 +262,26 @@
 				FA5FBBC81DC633410095D86E /* CTHCalculatorBase.m */,
 			);
 			name = Calculators;
+			sourceTree = "<group>";
+		};
+		FAEA43F51E59F126008ADE61 /* Integral */ = {
+			isa = PBXGroup;
+			children = (
+				FAEA43F61E59F194008ADE61 /* CTHIntegralCalculator.h */,
+				FAEA43F71E59F194008ADE61 /* CTHIntegralCalculator.m */,
+				FA7C0EC91E5CD0FF0070B37A /* CTHFunctionParser.h */,
+				FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */,
+			);
+			name = Integral;
+			sourceTree = "<group>";
+		};
+		FAFA305A1E61A2C800FB3E81 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FA5FBBCA1DC634D70095D86E /* CTHPersistantStoreManager.h */,
+				FA5FBBCB1DC634D70095D86E /* CTHPersistantStoreManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +351,7 @@
 				TargetAttributes = {
 					260C32EB1BFF277C00A776E9 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 6ESF8SB6VZ;
 					};
 					260C33041BFF277D00A776E9 = {
 						CreatedOnToolsVersion = 7.1;
@@ -388,10 +420,13 @@
 				FABB7BBC1DCE78C40001F67B /* CTHIpResultTableViewController.m in Sources */,
 				FABB7BC01DCE7EB40001F67B /* CTHIpCalculator.m in Sources */,
 				FAD207CA1DEA0830000030E4 /* CTHOctetedBinary.m in Sources */,
+				FA7C0ECB1E5CD0FF0070B37A /* CTHFunctionParser.m in Sources */,
+				FAEA43FB1E5A0816008ADE61 /* CTHCalculationUtil.m in Sources */,
 				260C32F41BFF277C00A776E9 /* AppDelegate.m in Sources */,
 				FA5FBBC91DC633410095D86E /* CTHCalculatorBase.m in Sources */,
 				E701F07F1DABAAE800330673 /* CTHMainViewController.m in Sources */,
 				FA5FBBCC1DC634D70095D86E /* CTHPersistantStoreManager.m in Sources */,
+				FAEA43F81E59F194008ADE61 /* CTHIntegralCalculator.m in Sources */,
 				26FAB25B1C035504007FD4EB /* CTHGeneralCalculator.m in Sources */,
 				260C32F11BFF277C00A776E9 /* main.m in Sources */,
 				E701F0851DABB14B00330673 /* CTHIntegralViewController.m in Sources */,
@@ -539,10 +574,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.first.Calculator;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alex4eetah.complex-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -551,10 +589,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.first.Calculator;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alex4eetah.complex-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

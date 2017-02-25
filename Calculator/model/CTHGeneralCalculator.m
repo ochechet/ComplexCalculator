@@ -7,6 +7,7 @@
 //
 
 #import "CTHGeneralCalculator.h"
+#import "CTHCalculationUtil.h"
 #import "CTHPersistantStoreManager.h"
 
 static NSString * const kGeneralCalculatorPersistantString = @"generalCalculatorPersistantString";
@@ -67,7 +68,7 @@ static NSString * const kGeneralCalculatorPersistantString = @"generalCalculator
         {
             if (
                 ([unaryOperations containsObject:givenArray[0]] || [givenArray[i-1] isEqualToString:@"("])
-                && [self isNum:givenArray[i+1]]){}//sin9
+                && isNum(givenArray[i+1])){}//sin9
             
             else if (
                      ([unaryOperations containsObject:givenArray[0]] || [givenArray[i-1] isEqualToString:@"("])
@@ -75,7 +76,7 @@ static NSString * const kGeneralCalculatorPersistantString = @"generalCalculator
             
             else if (
                      ([binaryOperations containsObject:givenArray[i-1]] || [givenArray[i-1] isEqualToString:@"("])
-                     && [self isNum:givenArray[i+1]]){}//+sin9
+                     && isNum(givenArray[i+1])){}//+sin9
             
             else if (
                      ([binaryOperations containsObject:givenArray[i-1]] || [givenArray[i-1] isEqualToString:@"("])
@@ -89,11 +90,11 @@ static NSString * const kGeneralCalculatorPersistantString = @"generalCalculator
         {
             if (i != 0)
             {
-                if ([self isNum:givenArray[i-1]] && ([givenArray[i+1] isEqualToString:@""]||[givenArray[i+1] isEqualToString:@")"])){}//5!
+                if (isNum(givenArray[i-1]) && ([givenArray[i+1] isEqualToString:@""]||[givenArray[i+1] isEqualToString:@")"])){}//5!
                 
                 else if ([givenArray[i-1] isEqualToString:@")"] && ([givenArray[i+1] isEqualToString:@""]||[givenArray[i+1] isEqualToString:@")"])){}//)!
                 
-                else if ([self isNum:givenArray[i-1]] && [binaryOperations containsObject:givenArray[i+1]]){}//5!+
+                else if (isNum(givenArray[i-1]) && [binaryOperations containsObject:givenArray[i+1]]){}//5!+
                 
                 else if ([givenArray[i-1] isEqualToString:@")"] && [binaryOperations containsObject:givenArray[i+1]]){}//)!+
                 
@@ -108,13 +109,13 @@ static NSString * const kGeneralCalculatorPersistantString = @"generalCalculator
         {
             if (i != 0 && ![givenArray[i-1]  isEqualToString: @"("])
             {
-                if([self isNum:givenArray[i-1]] && [self isNum:givenArray[i+1]]){}//1+1
+                if(isNum(givenArray[i-1]) && isNum(givenArray[i+1])){}//1+1
                 
                 else if([givenArray[i-1] isEqualToString:@")"] && [givenArray[i+1] isEqualToString:@"("]){}//)+(
                 
-                else if([self isNum:givenArray[i-1]] && [givenArray[i+1] isEqualToString:@"("]){}//1+(
+                else if(isNum(givenArray[i-1]) && [givenArray[i+1] isEqualToString:@"("]){}//1+(
                 
-                else if([givenArray[i-1] isEqualToString:@")"] && [self isNum:givenArray[i+1]]){}//)+1
+                else if([givenArray[i-1] isEqualToString:@")"] && isNum(givenArray[i+1])){}//)+1
                 
                 else
                     result = [NSString stringWithFormat:@"%@ %@",result,@"Value BinaryOperation Value\n"];
@@ -164,7 +165,7 @@ static NSString * const kGeneralCalculatorPersistantString = @"generalCalculator
     return tempresult;
 }
 
--(BOOL)isNum:(NSString*)string
+/*-(BOOL)isNum:(NSString*)string
 {
     NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
     NSNumber* number = [numberFormatter numberFromString:string];
@@ -173,7 +174,7 @@ static NSString * const kGeneralCalculatorPersistantString = @"generalCalculator
         return YES;
     else
         return NO;
-}
+}*/
 //------------------------------------------------------------------------------setting result
 -(void)setResult:(NSString *)taga
 {
