@@ -8,9 +8,14 @@
 
 #import "CTHCalculationUtil.h"
 
+static NSString * const cPiText = @"Pi";
+
 @implementation CTHCalculationUtil
 
 + (BOOL)isNumeric:(NSString *)string {
+    if ([string isEqualToString:cPiText]) {
+        return YES;
+    }
     NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [numberFormatter setNumberStyle:NSNumberFormatterScientificStyle];
@@ -19,6 +24,14 @@
         return true;
     }
     return false;
+}
+
++ (double)getDouble:(NSString *)string {
+    if ([string isEqualToString:cPiText]) {
+        return M_PI;
+    } else {
+        return [string doubleValue];
+    }
 }
 
 @end

@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #define isNum(string) [CTHCalculationUtil isNumeric:string]
+#define getDouble(string) [CTHCalculationUtil getDouble:string]
 
 @interface CTHCalculationUtil : NSObject
 
 + (BOOL)isNumeric:(NSString *)string;
++ (double)getDouble:(NSString *)string;
 
 @end

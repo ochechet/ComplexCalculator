@@ -26,6 +26,7 @@
 		FA6623ED1DCFABA400E7A592 /* CTHBinaryFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6623EC1DCFABA400E7A592 /* CTHBinaryFormatter.m */; };
 		FA7C0ECB1E5CD0FF0070B37A /* CTHFunctionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */; };
 		FA864A351DCF5FF90080A718 /* CTHIpResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA864A341DCF5FF90080A718 /* CTHIpResultModel.m */; };
+		FAB85A591E6312B800368B7D /* CTHIntegralCalculatorKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB85A581E6312B800368B7D /* CTHIntegralCalculatorKeyboardView.xib */; };
 		FABB7BBC1DCE78C40001F67B /* CTHIpResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBB1DCE78C40001F67B /* CTHIpResultTableViewController.m */; };
 		FABB7BC01DCE7EB40001F67B /* CTHIpCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */; };
 		FAD207CA1DEA0830000030E4 /* CTHOctetedBinary.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */; };
@@ -89,6 +90,7 @@
 		FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHFunctionParser.m; sourceTree = "<group>"; };
 		FA864A331DCF5FF90080A718 /* CTHIpResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpResultModel.h; sourceTree = "<group>"; };
 		FA864A341DCF5FF90080A718 /* CTHIpResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIpResultModel.m; sourceTree = "<group>"; };
+		FAB85A581E6312B800368B7D /* CTHIntegralCalculatorKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTHIntegralCalculatorKeyboardView.xib; sourceTree = "<group>"; };
 		FABB7BBA1DCE78C40001F67B /* CTHIpResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpResultTableViewController.h; sourceTree = "<group>"; };
 		FABB7BBB1DCE78C40001F67B /* CTHIpResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIpResultTableViewController.m; sourceTree = "<group>"; };
 		FABB7BBE1DCE7EB40001F67B /* CTHIpCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTHIpCalculator.h; path = model/CTHIpCalculator.h; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		260C32EE1BFF277C00A776E9 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				FAB85A571E63121100368B7D /* Custom views */,
 				FA62F2FC1E47B2E100CB2812 /* Common */,
 				FA5FBBC61DC632FB0095D86E /* Model */,
 				E701F0891DABC8D500330673 /* ViewControllers */,
@@ -156,8 +159,6 @@
 				260C32F61BFF277C00A776E9 /* ViewController.m */,
 				260C32F81BFF277C00A776E9 /* Main.storyboard */,
 				260C32FB1BFF277C00A776E9 /* Assets.xcassets */,
-				260C32FD1BFF277C00A776E9 /* LaunchScreen.storyboard */,
-				260C33001BFF277C00A776E9 /* Info.plist */,
 				260C32EF1BFF277C00A776E9 /* Supporting Files */,
 				E701F0801DABABFB00330673 /* Constants.h */,
 				E701F0811DABABFB00330673 /* Constants.m */,
@@ -168,6 +169,8 @@
 		260C32EF1BFF277C00A776E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				260C32FD1BFF277C00A776E9 /* LaunchScreen.storyboard */,
+				260C33001BFF277C00A776E9 /* Info.plist */,
 				260C32F21BFF277C00A776E9 /* AppDelegate.h */,
 				260C32F31BFF277C00A776E9 /* AppDelegate.m */,
 				260C32F01BFF277C00A776E9 /* main.m */,
@@ -238,6 +241,14 @@
 				FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */,
 			);
 			name = IP;
+			sourceTree = "<group>";
+		};
+		FAB85A571E63121100368B7D /* Custom views */ = {
+			isa = PBXGroup;
+			children = (
+				FAB85A581E6312B800368B7D /* CTHIntegralCalculatorKeyboardView.xib */,
+			);
+			name = "Custom views";
 			sourceTree = "<group>";
 		};
 		FABB7BB91DCE785C0001F67B /* IP ViewControllers */ = {
@@ -389,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				260C32FF1BFF277C00A776E9 /* LaunchScreen.storyboard in Resources */,
+				FAB85A591E6312B800368B7D /* CTHIntegralCalculatorKeyboardView.xib in Resources */,
 				260C32FC1BFF277C00A776E9 /* Assets.xcassets in Resources */,
 				260C32FA1BFF277C00A776E9 /* Main.storyboard in Resources */,
 			);
