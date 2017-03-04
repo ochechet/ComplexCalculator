@@ -24,6 +24,8 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *functionButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numericButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *operationButtons;
+@property (weak, nonatomic) IBOutlet UIButton *clearButton;
+@property (weak, nonatomic) IBOutlet UIButton *equalButton;
 
 @end
 
@@ -65,6 +67,17 @@
     self.functionFiled.delegate = self;
     self.aLimitField.delegate = self;
     self.bLimitField.delegate = self;
+    
+    NSArray *allButtons = [[[[NSArray arrayWithArray:self.functionButtons]
+                             arrayByAddingObjectsFromArray:self.numericButtons]
+                            arrayByAddingObjectsFromArray:self.operationButtons]
+                           arrayByAddingObjectsFromArray:@[self.clearButton, self.equalButton]];
+    
+    CGFloat radius = ((self.clearButton.frame.size.height + self.clearButton.frame.size.width) / 2) * 0.1;
+    for (UIButton *button in allButtons) {
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = radius;
+    }
     
 }
 
