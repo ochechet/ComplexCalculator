@@ -11,16 +11,28 @@
 #import "CTHIpResultTableViewController.h"
 #import "Constants.h"
 #import "CALayer+Animations.h"
+#import "UIViewController+ToggleLeftMenu.h"
+#import "IpHistoryManager.h"
+#import "CTHHistoryViewController.h"
+#import "HistoryControllerDelegate.h"
+#import "CTHHistoryPreviewViewController.h"
+#import "CTHIpHistoryItemModel.h"
 
 static NSString *const kToIpResultSegue = @"toIpResultSegue";
 
-@interface CTHIpViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CTHIpViewController () <UIPickerViewDataSource, UIPickerViewDelegate, HistoryControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *ipAddressField;
 @property (weak, nonatomic) IBOutlet UIPickerView *maAddressPicker;
+@property (weak, nonatomic) IBOutlet UIView *historyContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *historyContainerLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIView *historyContainerBackgroundView;
 
 @property (strong, nonatomic) CTHIpCalculator *calculator;
 @property (strong, nonatomic) CTHIpResultModel *resultModel;
+
+@property (weak, nonatomic) CTHHistoryViewController *historyController;
+@property (assign, nonatomic) NSInteger selectedHistoryItemIndex;
 
 @end
 
@@ -45,11 +57,30 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     [self.calculator persist];
 }
 
+- (void)toggleHistory {
+    self.historyController.itemsArray = [[IpHistoryManager sharedManager] getHistoryInfoArray];
+    [self.historyController.tableView reloadData];
+    [self toggleMenu:self.historyContainer
+withLeadingConstraint:self.historyContainerLeadingConstraint
+     withBackgroundView:self.historyContainerBackgroundView];
+}
+
+- (IBAction)historyButtonBeenPressed:(id)sender {
+    [self toggleHistory];
+}
+
 - (IBAction)leftEdgeBeenPanned:(UIScreenEdgePanGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        [self performSegueWithIdentifier:kUnwindFormIpToMainViewController sender:self];
+    [self toggleHistory];
+}
+
+- (IBAction)tapBeenHandled:(UITapGestureRecognizer *)sender {
+    CGPoint loc = [sender locationInView:self.view];
+    UIView* tapped = [self.view hitTest:loc withEvent:nil];
+    if (self.historyContainerLeadingConstraint.constant >= 0 && tapped == self.historyContainerBackgroundView) {
+        [self toggleHistory];
     }
 }
+
 - (IBAction)ipAdressFieldDidChanged:(UITextField *)sender {
     self.calculator.ipAddressString = sender.text;
 }
@@ -64,6 +95,12 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
             [weakSelf performSegueWithIdentifier:kToIpResultSegue sender:weakSelf];
         }
     }];
+}
+
+#pragma mark - HistoryControllerDelegate
+- (void)historyItemBeenSelectedAtIndex:(NSInteger)index {
+    self.selectedHistoryItemIndex = index;
+    [self performSegueWithIdentifier:kHistoryItemPreviewSegue sender:self];
 }
 
 #pragma mark - UIPickerView
@@ -83,12 +120,18 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     return [self.calculator.posibleMaskAdresses objectAtIndex:row];
 }
 
-
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kToIpResultSegue]) {
         CTHIpResultTableViewController *controller = segue.destinationViewController;
         controller.resultModel = self.resultModel;
+    } else if ([segue.identifier isEqualToString:kEmbedHistorySegue]) {
+        self.historyController = segue.destinationViewController;
+        self.historyController.delegate = self;
+    } else if ([segue.identifier isEqualToString:kHistoryItemPreviewSegue]) {
+        CTHIpHistoryItemModel *item = [[[IpHistoryManager sharedManager] getHistoryInfoArray]
+                                      objectAtIndex:self.selectedHistoryItemIndex];
+        ((CTHHistoryPreviewViewController *)segue.destinationViewController).item = item;
     }
 }
 

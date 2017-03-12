@@ -7,6 +7,7 @@
 //
 
 #import "CTHIpResultTableViewController.h"
+#import "IpHistoryManager.h"
 
 @interface CTHIpResultTableViewController ()
 
@@ -46,6 +47,24 @@
     self.firstHostAddressLabelBinary.text = self.resultModel.minimalHostBinary;
     self.lastHostAddressLabel.text = self.resultModel.maximalHost;
     self.lastHostAddressLabelBinary.text = self.resultModel.maximalHostBinary;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self saveHistory];
+}
+- (void)saveHistory {
+    UIImage *image = [[UIImage alloc] init];
+    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 1); //making image from view
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSString *infoString = [NSString stringWithFormat:@"Ip: %@\nMask: %@\nNetwork: %@\nHost: %@\nBroadcast: %@\nFirst host: %@\nLast host: %@",self.resultModel.ipAddress, self.resultModel.maskAddress, self.resultModel.networkAddress, self.resultModel.hostAddress, self.resultModel.broadcast, self.resultModel.minimalHost, self.resultModel.maximalHost];
+    
+    [[IpHistoryManager sharedManager] saveIpHistoryItemWithImage:image
+                                                           title:self.resultModel.ipAddress
+                                                            info:infoString];
 }
 
 @end

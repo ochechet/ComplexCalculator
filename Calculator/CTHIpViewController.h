@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTHBaseViewController.h"
 
-@interface CTHIpViewController : UIViewController
+@interface CTHIpViewController : CTHBaseViewController
 
 @end

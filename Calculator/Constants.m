@@ -14,5 +14,7 @@ NSString * const kUnwindFormMainToIntegralSegue = @"unwindFromMainToIntegralSegu
 NSString * const kToIpViewControllerSegue = @"toIpViewControllerSegue";
 NSString * const kUnwindFormIpToMainViewController = @"unwindFromIpToMainSegue";
 NSString * const kFromIntegralToMainSegue = @"fromIntegralToMainSegue";
+NSString * const kEmbedHistorySegue = @"historySegue";
+NSString * const kHistoryItemPreviewSegue = @"historyItemPreviewSegue";
 
 @end

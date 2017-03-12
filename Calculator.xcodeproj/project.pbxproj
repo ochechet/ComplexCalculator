@@ -30,8 +30,18 @@
 		FABB7BBC1DCE78C40001F67B /* CTHIpResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBB1DCE78C40001F67B /* CTHIpResultTableViewController.m */; };
 		FABB7BC01DCE7EB40001F67B /* CTHIpCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */; };
 		FAD207CA1DEA0830000030E4 /* CTHOctetedBinary.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */; };
+		FAD5C6C11E6C403300E90B88 /* CTHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5C6C01E6C403300E90B88 /* CTHBaseViewController.m */; };
+		FAD5C6C41E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5C6C31E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.m */; };
+		FAD5C6CA1E6C934F00E90B88 /* CTHHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5C6C91E6C934F00E90B88 /* CTHHistoryViewController.m */; };
 		FAEA43F81E59F194008ADE61 /* CTHIntegralCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA43F71E59F194008ADE61 /* CTHIntegralCalculator.m */; };
 		FAEA43FB1E5A0816008ADE61 /* CTHCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA43FA1E5A0816008ADE61 /* CTHCalculationUtil.m */; };
+		FAFF6DCD1E7563A60046AD91 /* CTHHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6DCC1E7563A60046AD91 /* CTHHistoryTableViewCell.m */; };
+		FAFF6DD01E7566420046AD91 /* CTHModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6DCE1E7566420046AD91 /* CTHModel.xcdatamodeld */; };
+		FAFF6DFB1E7569780046AD91 /* IpHistoryItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6DF81E7569780046AD91 /* IpHistoryItem+CoreDataProperties.m */; };
+		FAFF6DFC1E7569780046AD91 /* IpHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6DFA1E7569780046AD91 /* IpHistoryItem.m */; };
+		FAFF6E001E7569BC0046AD91 /* IpHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6DFF1E7569BC0046AD91 /* IpHistoryManager.m */; };
+		FAFF6E041E7598FD0046AD91 /* CTHHistoryPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6E031E7598FD0046AD91 /* CTHHistoryPreviewViewController.m */; };
+		FAFF6E071E759AF40046AD91 /* CTHIpHistoryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6E061E759AF40046AD91 /* CTHIpHistoryItemModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,10 +107,30 @@
 		FABB7BBF1DCE7EB40001F67B /* CTHIpCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTHIpCalculator.m; path = model/CTHIpCalculator.m; sourceTree = "<group>"; };
 		FAD207C81DEA0830000030E4 /* CTHOctetedBinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTHOctetedBinary.h; path = model/CTHOctetedBinary.h; sourceTree = "<group>"; };
 		FAD207C91DEA0830000030E4 /* CTHOctetedBinary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTHOctetedBinary.m; path = model/CTHOctetedBinary.m; sourceTree = "<group>"; };
+		FAD5C6BF1E6C403300E90B88 /* CTHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHBaseViewController.h; sourceTree = "<group>"; };
+		FAD5C6C01E6C403300E90B88 /* CTHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHBaseViewController.m; sourceTree = "<group>"; };
+		FAD5C6C21E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ToggleLeftMenu.h"; sourceTree = "<group>"; };
+		FAD5C6C31E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ToggleLeftMenu.m"; sourceTree = "<group>"; };
+		FAD5C6C81E6C934F00E90B88 /* CTHHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHHistoryViewController.h; sourceTree = "<group>"; };
+		FAD5C6C91E6C934F00E90B88 /* CTHHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHHistoryViewController.m; sourceTree = "<group>"; };
 		FAEA43F61E59F194008ADE61 /* CTHIntegralCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIntegralCalculator.h; sourceTree = "<group>"; };
 		FAEA43F71E59F194008ADE61 /* CTHIntegralCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIntegralCalculator.m; sourceTree = "<group>"; };
 		FAEA43F91E5A0816008ADE61 /* CTHCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHCalculationUtil.h; sourceTree = "<group>"; };
 		FAEA43FA1E5A0816008ADE61 /* CTHCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHCalculationUtil.m; sourceTree = "<group>"; };
+		FAFF6DCB1E7563A60046AD91 /* CTHHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHHistoryTableViewCell.h; sourceTree = "<group>"; };
+		FAFF6DCC1E7563A60046AD91 /* CTHHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHHistoryTableViewCell.m; sourceTree = "<group>"; };
+		FAFF6DCF1E7566420046AD91 /* CTHModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CTHModel.xcdatamodel; sourceTree = "<group>"; };
+		FAFF6DF71E7569780046AD91 /* IpHistoryItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IpHistoryItem+CoreDataProperties.h"; path = "../IpHistoryItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FAFF6DF81E7569780046AD91 /* IpHistoryItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IpHistoryItem+CoreDataProperties.m"; path = "../IpHistoryItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FAFF6DF91E7569780046AD91 /* IpHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IpHistoryItem.h; path = ../IpHistoryItem.h; sourceTree = "<group>"; };
+		FAFF6DFA1E7569780046AD91 /* IpHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IpHistoryItem.m; path = ../IpHistoryItem.m; sourceTree = "<group>"; };
+		FAFF6DFE1E7569BC0046AD91 /* IpHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IpHistoryManager.h; sourceTree = "<group>"; };
+		FAFF6DFF1E7569BC0046AD91 /* IpHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IpHistoryManager.m; sourceTree = "<group>"; };
+		FAFF6E011E7597810046AD91 /* HistoryControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryControllerDelegate.h; sourceTree = "<group>"; };
+		FAFF6E021E7598FD0046AD91 /* CTHHistoryPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHHistoryPreviewViewController.h; sourceTree = "<group>"; };
+		FAFF6E031E7598FD0046AD91 /* CTHHistoryPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHHistoryPreviewViewController.m; sourceTree = "<group>"; };
+		FAFF6E051E759AF40046AD91 /* CTHIpHistoryItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpHistoryItemModel.h; sourceTree = "<group>"; };
+		FAFF6E061E759AF40046AD91 /* CTHIpHistoryItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIpHistoryItemModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,11 +229,12 @@
 		E701F0891DABC8D500330673 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FABB7BB91DCE785C0001F67B /* IP ViewControllers */,
-				E701F07D1DABAAE800330673 /* CTHMainViewController.h */,
-				E701F07E1DABAAE800330673 /* CTHMainViewController.m */,
-				E701F0831DABB14B00330673 /* CTHIntegralViewController.h */,
-				E701F0841DABB14B00330673 /* CTHIntegralViewController.m */,
+				FAD5C6C71E6C932100E90B88 /* History */,
+				FAD5C6C61E6C931100E90B88 /* Main */,
+				FAD5C6C51E6C92F900E90B88 /* Integral */,
+				FABB7BB91DCE785C0001F67B /* IP */,
+				FAD5C6BF1E6C403300E90B88 /* CTHBaseViewController.h */,
+				FAD5C6C01E6C403300E90B88 /* CTHBaseViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -211,6 +242,7 @@
 		FA5FBBC61DC632FB0095D86E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAFF6DFD1E7569850046AD91 /* CoreData */,
 				FAFA305A1E61A2C800FB3E81 /* Managers */,
 				FABB7BBD1DCE7A380001F67B /* Calculators */,
 			);
@@ -226,6 +258,8 @@
 				FA62F2FE1E47B32D00CB2812 /* CALayer+Animations.m */,
 				FAEA43F91E5A0816008ADE61 /* CTHCalculationUtil.h */,
 				FAEA43FA1E5A0816008ADE61 /* CTHCalculationUtil.m */,
+				FAD5C6C21E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.h */,
+				FAD5C6C31E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -251,7 +285,7 @@
 			name = "Custom views";
 			sourceTree = "<group>";
 		};
-		FABB7BB91DCE785C0001F67B /* IP ViewControllers */ = {
+		FABB7BB91DCE785C0001F67B /* IP */ = {
 			isa = PBXGroup;
 			children = (
 				E701F0861DABC88400330673 /* CTHIpViewController.h */,
@@ -259,7 +293,7 @@
 				FABB7BBA1DCE78C40001F67B /* CTHIpResultTableViewController.h */,
 				FABB7BBB1DCE78C40001F67B /* CTHIpResultTableViewController.m */,
 			);
-			name = "IP ViewControllers";
+			name = IP;
 			sourceTree = "<group>";
 		};
 		FABB7BBD1DCE7A380001F67B /* Calculators */ = {
@@ -273,6 +307,38 @@
 				FA5FBBC81DC633410095D86E /* CTHCalculatorBase.m */,
 			);
 			name = Calculators;
+			sourceTree = "<group>";
+		};
+		FAD5C6C51E6C92F900E90B88 /* Integral */ = {
+			isa = PBXGroup;
+			children = (
+				E701F0831DABB14B00330673 /* CTHIntegralViewController.h */,
+				E701F0841DABB14B00330673 /* CTHIntegralViewController.m */,
+			);
+			name = Integral;
+			sourceTree = "<group>";
+		};
+		FAD5C6C61E6C931100E90B88 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E701F07D1DABAAE800330673 /* CTHMainViewController.h */,
+				E701F07E1DABAAE800330673 /* CTHMainViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		FAD5C6C71E6C932100E90B88 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				FAD5C6C81E6C934F00E90B88 /* CTHHistoryViewController.h */,
+				FAD5C6C91E6C934F00E90B88 /* CTHHistoryViewController.m */,
+				FAFF6DCB1E7563A60046AD91 /* CTHHistoryTableViewCell.h */,
+				FAFF6DCC1E7563A60046AD91 /* CTHHistoryTableViewCell.m */,
+				FAFF6E011E7597810046AD91 /* HistoryControllerDelegate.h */,
+				FAFF6E021E7598FD0046AD91 /* CTHHistoryPreviewViewController.h */,
+				FAFF6E031E7598FD0046AD91 /* CTHHistoryPreviewViewController.m */,
+			);
+			name = History;
 			sourceTree = "<group>";
 		};
 		FAEA43F51E59F126008ADE61 /* Integral */ = {
@@ -293,6 +359,22 @@
 				FA5FBBCB1DC634D70095D86E /* CTHPersistantStoreManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		FAFF6DFD1E7569850046AD91 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FAFF6DCE1E7566420046AD91 /* CTHModel.xcdatamodeld */,
+				FAFF6DF71E7569780046AD91 /* IpHistoryItem+CoreDataProperties.h */,
+				FAFF6DF81E7569780046AD91 /* IpHistoryItem+CoreDataProperties.m */,
+				FAFF6DF91E7569780046AD91 /* IpHistoryItem.h */,
+				FAFF6DFA1E7569780046AD91 /* IpHistoryItem.m */,
+				FAFF6DFE1E7569BC0046AD91 /* IpHistoryManager.h */,
+				FAFF6DFF1E7569BC0046AD91 /* IpHistoryManager.m */,
+				FAFF6E051E759AF40046AD91 /* CTHIpHistoryItemModel.h */,
+				FAFF6E061E759AF40046AD91 /* CTHIpHistoryItemModel.m */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,17 +512,27 @@
 				FA864A351DCF5FF90080A718 /* CTHIpResultModel.m in Sources */,
 				260C32F71BFF277C00A776E9 /* ViewController.m in Sources */,
 				FABB7BBC1DCE78C40001F67B /* CTHIpResultTableViewController.m in Sources */,
+				FAFF6E071E759AF40046AD91 /* CTHIpHistoryItemModel.m in Sources */,
 				FABB7BC01DCE7EB40001F67B /* CTHIpCalculator.m in Sources */,
 				FAD207CA1DEA0830000030E4 /* CTHOctetedBinary.m in Sources */,
 				FA7C0ECB1E5CD0FF0070B37A /* CTHFunctionParser.m in Sources */,
+				FAFF6DFC1E7569780046AD91 /* IpHistoryItem.m in Sources */,
 				FAEA43FB1E5A0816008ADE61 /* CTHCalculationUtil.m in Sources */,
 				260C32F41BFF277C00A776E9 /* AppDelegate.m in Sources */,
 				FA5FBBC91DC633410095D86E /* CTHCalculatorBase.m in Sources */,
+				FAFF6DCD1E7563A60046AD91 /* CTHHistoryTableViewCell.m in Sources */,
+				FAFF6E001E7569BC0046AD91 /* IpHistoryManager.m in Sources */,
 				E701F07F1DABAAE800330673 /* CTHMainViewController.m in Sources */,
+				FAD5C6C41E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.m in Sources */,
+				FAD5C6CA1E6C934F00E90B88 /* CTHHistoryViewController.m in Sources */,
+				FAFF6DD01E7566420046AD91 /* CTHModel.xcdatamodeld in Sources */,
 				FA5FBBCC1DC634D70095D86E /* CTHPersistantStoreManager.m in Sources */,
+				FAD5C6C11E6C403300E90B88 /* CTHBaseViewController.m in Sources */,
 				FAEA43F81E59F194008ADE61 /* CTHIntegralCalculator.m in Sources */,
 				26FAB25B1C035504007FD4EB /* CTHGeneralCalculator.m in Sources */,
 				260C32F11BFF277C00A776E9 /* main.m in Sources */,
+				FAFF6DFB1E7569780046AD91 /* IpHistoryItem+CoreDataProperties.m in Sources */,
+				FAFF6E041E7598FD0046AD91 /* CTHHistoryPreviewViewController.m in Sources */,
 				E701F0851DABB14B00330673 /* CTHIntegralViewController.m in Sources */,
 				E701F0821DABABFB00330673 /* Constants.m in Sources */,
 				E701F0881DABC88400330673 /* CTHIpViewController.m in Sources */,
@@ -700,6 +792,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FAFF6DCE1E7566420046AD91 /* CTHModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FAFF6DCF1E7566420046AD91 /* CTHModel.xcdatamodel */,
+			);
+			currentVersion = FAFF6DCF1E7566420046AD91 /* CTHModel.xcdatamodel */;
+			path = CTHModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 260C32E41BFF277C00A776E9 /* Project object */;
 }

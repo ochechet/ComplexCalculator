@@ -14,5 +14,7 @@ extern NSString * const kUnwindFormMainToIntegralSegue;
 extern NSString * const kToIpViewControllerSegue;
 extern NSString * const kUnwindFormIpToMainViewController;
 extern NSString * const kFromIntegralToMainSegue;
+extern NSString * const kEmbedHistorySegue;
+extern NSString * const kHistoryItemPreviewSegue;
 
 @end

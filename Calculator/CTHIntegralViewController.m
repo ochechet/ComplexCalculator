@@ -27,6 +27,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *clearButton;
 @property (weak, nonatomic) IBOutlet UIButton *equalButton;
 
+@property (weak, nonatomic) IBOutlet UIView *resultView;
+@property (weak, nonatomic) IBOutlet UILabel *bResultLabel;
+@property (weak, nonatomic) IBOutlet UILabel *aResultLabel;
+@property (weak, nonatomic) IBOutlet UILabel *functionResultLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalResultLabel;
+
 @end
 
 @implementation CTHIntegralViewController
@@ -172,7 +178,16 @@
     double r = [self.calculator calculateDefinedIntegralWithFunction:block
                                                 fromLimit:getDouble(self.aLimitField.text)
                                                   toLimit:getDouble(self.bLimitField.text)];
-    NSLog(@"%f", r);
+    [self showResultViewWithResult:r];
+    
+}
+
+- (void)showResultViewWithResult:(double)result {
+    self.resultView.hidden = NO;
+    self.aResultLabel.text = self.aLimitField.text;
+    self.bResultLabel.text = self.bLimitField.text;
+    self.functionResultLabel.text = self.functionFiled.text;
+    self.totalResultLabel.text = [NSString stringWithFormat:@"%f", result];
 }
 
 - (bool)validateInput {
