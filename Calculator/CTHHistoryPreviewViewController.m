@@ -7,6 +7,8 @@
 //
 
 #import "CTHHistoryPreviewViewController.h"
+#import "HistoryControllerDelegate.h"
+#import "CTHIpHistoryItemModel.h"
 
 @interface CTHHistoryPreviewViewController ()
 
@@ -33,6 +35,15 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.tabBarController.tabBar setHidden:NO];
+}
+
+- (IBAction)applyButtonBeenTapped:(id)sender {
+    [self.navigationController popToViewController:self.delegate animated:YES];
+    [self.delegate applyHistoryItem:self.item];
+}
+
+- (IBAction)shareButtonBeenTapped:(id)sender {
+    [self.delegate shareHistoryItem:self.item];
 }
 
 @end

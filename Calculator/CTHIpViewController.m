@@ -47,10 +47,7 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     [super viewWillAppear:animated];
     [self.calculator refresh];
     self.ipAddressField.text = self.calculator.ipAddressString;
-    NSString *maskAddress = self.calculator.mascAdressString;
-    NSInteger maskAddressRow = ([self.calculator.posibleMaskAdresses indexOfObject:maskAddress] != NSNotFound)? [self.calculator.posibleMaskAdresses indexOfObject:maskAddress]: 0;
-    [self.maAddressPicker selectRow:maskAddressRow inComponent:0 animated:YES];
-    [self pickerView:self.maAddressPicker didSelectRow:maskAddressRow inComponent:0];
+    [self selectMaskAddress:self.calculator.mascAdressString];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -86,6 +83,10 @@ withLeadingConstraint:self.historyContainerLeadingConstraint
 }
 
 - (IBAction)calculateButtonPressed:(id)sender {
+    [self performCalculation];
+}
+
+- (void)performCalculation {
     __weak typeof (self) weakSelf = self;
     [self.calculator calculateWithCompletion:^(CTHIpResultModel *model) {
         if (!model) {
@@ -99,8 +100,22 @@ withLeadingConstraint:self.historyContainerLeadingConstraint
 
 #pragma mark - HistoryControllerDelegate
 - (void)historyItemBeenSelectedAtIndex:(NSInteger)index {
+    [self toggleHistory];
     self.selectedHistoryItemIndex = index;
     [self performSegueWithIdentifier:kHistoryItemPreviewSegue sender:self];
+}
+
+- (void)applyHistoryItem:(CTHIpHistoryItemModel *)item {
+    self.ipAddressField.text = item.ip;
+    [self selectMaskAddress:item.mask];
+    
+    self.calculator.ipAddressString = item.ip;
+    self.calculator.mascAdressString = item.mask;
+    [self performCalculation];
+}
+
+- (void)shareHistoryItem:(CTHIpHistoryItemModel *)item {
+    
 }
 
 #pragma mark - UIPickerView
@@ -120,6 +135,12 @@ withLeadingConstraint:self.historyContainerLeadingConstraint
     return [self.calculator.posibleMaskAdresses objectAtIndex:row];
 }
 
+- (void)selectMaskAddress:(NSString *)mask {
+    NSInteger maskAddressRow = ([self.calculator.posibleMaskAdresses indexOfObject:mask] != NSNotFound)? [self.calculator.posibleMaskAdresses indexOfObject:mask]: 0;
+    [self.maAddressPicker selectRow:maskAddressRow inComponent:0 animated:YES];
+    [self pickerView:self.maAddressPicker didSelectRow:maskAddressRow inComponent:0];
+}
+
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kToIpResultSegue]) {
@@ -131,7 +152,9 @@ withLeadingConstraint:self.historyContainerLeadingConstraint
     } else if ([segue.identifier isEqualToString:kHistoryItemPreviewSegue]) {
         CTHIpHistoryItemModel *item = [[[IpHistoryManager sharedManager] getHistoryInfoArray]
                                       objectAtIndex:self.selectedHistoryItemIndex];
-        ((CTHHistoryPreviewViewController *)segue.destinationViewController).item = item;
+        CTHHistoryPreviewViewController *preview = ((CTHHistoryPreviewViewController *)segue.destinationViewController);
+        preview.item = item;
+        preview.delegate = self;
     }
 }
 

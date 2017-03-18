@@ -14,9 +14,13 @@
 @property (strong, nonatomic, readonly) UIImage *image;
 @property (strong, nonatomic, readonly) NSString *title;
 @property (strong, nonatomic, readonly) NSString *info;
+@property (strong, nonatomic, readonly) NSString *ip;
+@property (strong, nonatomic, readonly) NSString *mask;
 
 - (instancetype)initWithImage:(UIImage *)image
                         title:(NSString *)title
-                         info:(NSString *)info;
+                         info:(NSString *)info
+                           ip:(NSString *)ip
+                         mask:(NSString *)mask;
 
 @end

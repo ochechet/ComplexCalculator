@@ -35,12 +35,14 @@ static NSString *const IpHistoryItemCoreDataName = @"IpHistoryItem";
 
 - (void)saveIpHistoryItemWithImage:(UIImage *)image
                              title:(NSString *)title
-                              info:(NSString *)info {
+                              info:(NSString *)info
+                              meta:(NSData *)meta {
     IpHistoryItem *item = [NSEntityDescription insertNewObjectForEntityForName:IpHistoryItemCoreDataName
                                                         inManagedObjectContext:self.context];
     item.image = UIImageJPEGRepresentation(image, 1.0);
     item.title = title;
     item.info = info;
+    item.metaData = meta;
     [self.context save:nil];
 }
 
@@ -55,12 +57,34 @@ static NSString *const IpHistoryItemCoreDataName = @"IpHistoryItem";
     NSMutableArray *result = [NSMutableArray array];
     
     for (IpHistoryItem *item in fetchResult) {
+        NSDictionary *metaDict = [NSJSONSerialization JSONObjectWithData:item.metaData options:0 error:nil];
         CTHIpHistoryItemModel *model = [[CTHIpHistoryItemModel alloc] initWithImage:[UIImage imageWithData:item.image]
                                                                              title:item.title
-                                                                              info:item.info];
+                                                                              info:item.info
+                                                                                 ip:[metaDict objectForKey:@"ip"]
+                                                                               mask:[metaDict objectForKey:@"mask"]];
         [result addObject:model];
     }
     return result;
+}
+
+- (BOOL) itemWithMetaExist:(NSData *)meta {
+    
+   /* NSDictionary *metaDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    item.ip, @"ip",
+                                    item.mask, @"mask", nil];
+    NSData *meta = [NSJSONSerialization dataWithJSONObject:metaDictionary
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];*/
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription * description =
+    [NSEntityDescription entityForName:IpHistoryItemCoreDataName
+                inManagedObjectContext:self.context];
+    [request setEntity:description];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"metaData == %@", meta]];
+    NSArray *fetchResult = [self.context executeFetchRequest:request error:nil];
+    return [fetchResult count] > 0;
 }
 
 @end

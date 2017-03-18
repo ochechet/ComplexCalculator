@@ -20,7 +20,9 @@
 
 - (void)saveIpHistoryItemWithImage:(UIImage *)image
                              title:(NSString *)title
-                              info:(NSString *)info;
+                              info:(NSString *)info
+                              meta:(NSData *)meta;
 - (NSArray<CTHIpHistoryItemModel *> *)getHistoryInfoArray;
+- (BOOL) itemWithMetaExist:(NSData *)meta;
 
 @end

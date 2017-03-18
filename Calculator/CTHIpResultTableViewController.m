@@ -62,9 +62,19 @@
     
     NSString *infoString = [NSString stringWithFormat:@"Ip: %@\nMask: %@\nNetwork: %@\nHost: %@\nBroadcast: %@\nFirst host: %@\nLast host: %@",self.resultModel.ipAddress, self.resultModel.maskAddress, self.resultModel.networkAddress, self.resultModel.hostAddress, self.resultModel.broadcast, self.resultModel.minimalHost, self.resultModel.maximalHost];
     
-    [[IpHistoryManager sharedManager] saveIpHistoryItemWithImage:image
-                                                           title:self.resultModel.ipAddress
-                                                            info:infoString];
+    NSDictionary *metaDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    self.resultModel.ipAddress, @"ip",
+                                    self.resultModel.maskAddress, @"mask", nil];
+    NSData *meta = [NSJSONSerialization dataWithJSONObject:metaDictionary
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    IpHistoryManager *manager = [IpHistoryManager sharedManager];
+    if (![manager itemWithMetaExist:meta]) {
+        [manager saveIpHistoryItemWithImage:image
+                                      title:self.resultModel.ipAddress
+                                       info:infoString
+                                       meta:meta];
+    }
 }
 
 @end
