@@ -1518,15 +1518,15 @@
         <!--Tab Bar Controller-->
         <scene sceneID="YFi-rz-rcx">
             <objects>
-                <tabBarController id="SUo-KX-Nta" sceneMemberID="viewController">
+                <tabBarController id="SUo-KX-Nta" customClass="CTHTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="fbj-zA-0g1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Opg-uY-yxH" kind="relationship" relationship="viewControllers" id="klD-gk-lS3"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="eAO-9Z-tf7"/>
+                        <segue destination="Opg-uY-yxH" kind="relationship" relationship="viewControllers" id="klD-gk-lS3"/>
                         <segue destination="UE1-ga-3ST" kind="relationship" relationship="viewControllers" id="IvQ-ph-T3v"/>
                     </connections>
                 </tabBarController>

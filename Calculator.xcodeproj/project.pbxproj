@@ -20,6 +20,7 @@
 		E701F0821DABABFB00330673 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F0811DABABFB00330673 /* Constants.m */; };
 		E701F0851DABB14B00330673 /* CTHIntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F0841DABB14B00330673 /* CTHIntegralViewController.m */; };
 		E701F0881DABC88400330673 /* CTHIpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E701F0871DABC88400330673 /* CTHIpViewController.m */; };
+		FA3BEB3A1E88112900337840 /* CTHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3BEB391E88112900337840 /* CTHTabBarController.m */; };
 		FA5FBBC91DC633410095D86E /* CTHCalculatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBBC81DC633410095D86E /* CTHCalculatorBase.m */; };
 		FA5FBBCC1DC634D70095D86E /* CTHPersistantStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBBCB1DC634D70095D86E /* CTHPersistantStoreManager.m */; };
 		FA62F2FF1E47B32D00CB2812 /* CALayer+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FA62F2FE1E47B32D00CB2812 /* CALayer+Animations.m */; };
@@ -88,6 +89,8 @@
 		E701F0841DABB14B00330673 /* CTHIntegralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIntegralViewController.m; sourceTree = "<group>"; };
 		E701F0861DABC88400330673 /* CTHIpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpViewController.h; sourceTree = "<group>"; };
 		E701F0871DABC88400330673 /* CTHIpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHIpViewController.m; sourceTree = "<group>"; };
+		FA3BEB381E88112900337840 /* CTHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHTabBarController.h; sourceTree = "<group>"; };
+		FA3BEB391E88112900337840 /* CTHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHTabBarController.m; sourceTree = "<group>"; };
 		FA5FBBC71DC633410095D86E /* CTHCalculatorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTHCalculatorBase.h; path = model/CTHCalculatorBase.h; sourceTree = "<group>"; };
 		FA5FBBC81DC633410095D86E /* CTHCalculatorBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTHCalculatorBase.m; path = model/CTHCalculatorBase.m; sourceTree = "<group>"; };
 		FA5FBBCA1DC634D70095D86E /* CTHPersistantStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTHPersistantStoreManager.h; path = model/CTHPersistantStoreManager.h; sourceTree = "<group>"; };
@@ -181,6 +184,7 @@
 		260C32EE1BFF277C00A776E9 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				FAE295EF1E7ECB2C0088A50E /* Frameworks */,
 				FAB85A571E63121100368B7D /* Custom views */,
 				FA62F2FC1E47B2E100CB2812 /* Common */,
 				FA5FBBC61DC632FB0095D86E /* Model */,
@@ -189,6 +193,8 @@
 				260C32F61BFF277C00A776E9 /* ViewController.m */,
 				260C32F81BFF277C00A776E9 /* Main.storyboard */,
 				260C32FB1BFF277C00A776E9 /* Assets.xcassets */,
+				260C32F21BFF277C00A776E9 /* AppDelegate.h */,
+				260C32F31BFF277C00A776E9 /* AppDelegate.m */,
 				260C32EF1BFF277C00A776E9 /* Supporting Files */,
 				E701F0801DABABFB00330673 /* Constants.h */,
 				E701F0811DABABFB00330673 /* Constants.m */,
@@ -201,8 +207,6 @@
 			children = (
 				260C32FD1BFF277C00A776E9 /* LaunchScreen.storyboard */,
 				260C33001BFF277C00A776E9 /* Info.plist */,
-				260C32F21BFF277C00A776E9 /* AppDelegate.h */,
-				260C32F31BFF277C00A776E9 /* AppDelegate.m */,
 				260C32F01BFF277C00A776E9 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -235,6 +239,8 @@
 				FABB7BB91DCE785C0001F67B /* IP */,
 				FAD5C6BF1E6C403300E90B88 /* CTHBaseViewController.h */,
 				FAD5C6C01E6C403300E90B88 /* CTHBaseViewController.m */,
+				FA3BEB381E88112900337840 /* CTHTabBarController.h */,
+				FA3BEB391E88112900337840 /* CTHTabBarController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -339,6 +345,13 @@
 				FAFF6E031E7598FD0046AD91 /* CTHHistoryPreviewViewController.m */,
 			);
 			name = History;
+			sourceTree = "<group>";
+		};
+		FAE295EF1E7ECB2C0088A50E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FAEA43F51E59F126008ADE61 /* Integral */ = {
@@ -524,6 +537,7 @@
 				FAFF6E001E7569BC0046AD91 /* IpHistoryManager.m in Sources */,
 				E701F07F1DABAAE800330673 /* CTHMainViewController.m in Sources */,
 				FAD5C6C41E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.m in Sources */,
+				FA3BEB3A1E88112900337840 /* CTHTabBarController.m in Sources */,
 				FAD5C6CA1E6C934F00E90B88 /* CTHHistoryViewController.m in Sources */,
 				FAFF6DD01E7566420046AD91 /* CTHModel.xcdatamodeld in Sources */,
 				FA5FBBCC1DC634D70095D86E /* CTHPersistantStoreManager.m in Sources */,
@@ -682,6 +696,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Calculator",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alex4eetah.complex-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -697,6 +715,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Calculator",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alex4eetah.complex-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

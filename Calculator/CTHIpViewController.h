@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CTHBaseViewController.h"
+@class CTHIpHistoryItemModel;
 
 @interface CTHIpViewController : CTHBaseViewController
 

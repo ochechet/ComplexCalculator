@@ -17,4 +17,17 @@ NSString * const kFromIntegralToMainSegue = @"fromIntegralToMainSegue";
 NSString * const kEmbedHistorySegue = @"historySegue";
 NSString * const kHistoryItemPreviewSegue = @"historyItemPreviewSegue";
 
+NSString * const kOpenUrlApplicationId = @"alex4eetahFlameCalculator";
+NSString * const kOpenUrlActivityTypeKey = @"openActivityType";
+NSString * const kOpenUrlActivityTypeIp = @"Ip";
+NSString * const kOpenUrlActivityTypeIntegral = @"Integral";
+NSString * const kOpenUrlMetaKey = @"meta";
+
+NSString * const kOpenTabKey = @"TabToOpen";
+NSString * const kOpenTabTypeIp = @"iPTabToOpen";
+NSString * const kIpToUseKey = @"IpToUse";
+NSString * const kMaskToUseKey = @"MaskToUse";
+
+NSString * const kTabNeedsRefresh = @"tabNeedsRefresh";
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -45,6 +46,32 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    
+    NSArray *hostComponents = [[url host] componentsSeparatedByString:@"="];
+    if (hostComponents.count == 2 && [[hostComponents firstObject] isEqualToString:kOpenUrlActivityTypeKey]) {
+        if ([[hostComponents lastObject] isEqualToString:kOpenUrlActivityTypeIp]) {//IP related info
+            NSString *meta = [[[[url pathComponents] lastObject] componentsSeparatedByString:@"="] lastObject];
+            NSArray *metaItemsArray = [meta componentsSeparatedByString:@"\n"];
+            if (metaItemsArray.count >= 2) {
+                
+            }
+            NSString *ip = [[metaItemsArray[0] componentsSeparatedByString:@": "] lastObject];
+            NSString *mask = [[metaItemsArray[1] componentsSeparatedByString:@": "] lastObject];
+            
+            NSUserDefaults *storage = [NSUserDefaults standardUserDefaults];
+            [storage setValue:kOpenTabTypeIp forKey:kOpenTabKey];
+            [storage setValue:ip forKey:kIpToUseKey];
+            [storage setValue:mask forKey:kMaskToUseKey];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kTabNeedsRefresh object:nil];
+            NSLog(@"%@", meta);
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - Core Data stack

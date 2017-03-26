@@ -45,9 +45,24 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.calculator refresh];
-    self.ipAddressField.text = self.calculator.ipAddressString;
-    [self selectMaskAddress:self.calculator.mascAdressString];
+    
+    NSUserDefaults *storage = [NSUserDefaults standardUserDefaults];
+    NSString *ipToUse = [storage valueForKey:kIpToUseKey];
+    NSString *maskToUse = [storage valueForKey:kMaskToUseKey];
+    
+    if (ipToUse && maskToUse) {
+        CTHIpHistoryItemModel *item = [[CTHIpHistoryItemModel alloc] initWithImage:nil title:nil info:nil ip:ipToUse mask:maskToUse];
+        [storage removeObjectForKey:kIpToUseKey];
+        [storage removeObjectForKey:kMaskToUseKey];
+        [storage synchronize];
+
+        [self applyHistoryItem:item];
+        
+    } else {
+        [self.calculator refresh];
+        self.ipAddressField.text = self.calculator.ipAddressString;
+        [self selectMaskAddress:self.calculator.mascAdressString];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

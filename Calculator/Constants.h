@@ -17,4 +17,17 @@ extern NSString * const kFromIntegralToMainSegue;
 extern NSString * const kEmbedHistorySegue;
 extern NSString * const kHistoryItemPreviewSegue;
 
+extern NSString * const kOpenUrlApplicationId;
+extern NSString * const kOpenUrlActivityTypeKey;
+extern NSString * const kOpenUrlActivityTypeIp;
+extern NSString * const kOpenUrlActivityTypeIntegral;
+extern NSString * const kOpenUrlMetaKey;
+
+extern NSString * const kOpenTabKey;
+extern NSString * const kOpenTabTypeIp;
+extern NSString * const kIpToUseKey;
+extern NSString * const kMaskToUseKey;
+
+extern NSString * const kTabNeedsRefresh;
+
 @end
