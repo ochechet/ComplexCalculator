@@ -12,6 +12,17 @@
 
 - (void)toggleMenu:(UIView *)menu
 withLeadingConstraint:(NSLayoutConstraint *)leadingConstraint
+            onView:(UIView *)mainView
+withBackgroundView:(UIView *)background;
+
+- (void)openMenu:(UIView *)menu
+withLeadingConstraint:(NSLayoutConstraint *)leadingConstraint
+            onView:(UIView *)mainView
+withBackgroundView:(UIView *)background;
+
+- (void)closeMenu:(UIView *)menu
+withLeadingConstraint:(NSLayoutConstraint *)leadingConstraint
+            onView:(UIView *)mainView
 withBackgroundView:(UIView *)background;
 
 @end

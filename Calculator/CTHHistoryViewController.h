@@ -13,7 +13,12 @@
 
 @interface CTHHistoryViewController : UITableViewController
 
-@property (weak, nonatomic) id<HistoryControllerDelegate> delegate;
+@property (weak, nonatomic) UIViewController<HistoryControllerDelegate> *delegate;
+@property (weak, nonatomic) UIView *historyContainer;
+@property (weak, nonatomic) UIBarButtonItem *historyButton;
+@property (weak, nonatomic) NSLayoutConstraint *historyContainerLeadingConstraint;
+@property (weak, nonatomic) UIView *historyContainerBackgroundView;
+
 @property (strong, nonatomic) NSArray<CTHIpHistoryItemModel *> *itemsArray;
 
 @end

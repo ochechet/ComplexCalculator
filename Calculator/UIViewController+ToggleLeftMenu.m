@@ -12,8 +12,33 @@
 
 @implementation UIViewController (ToggleLeftMenu)
 
+- (void)openMenu:(UIView *)menu
+withLeadingConstraint:(NSLayoutConstraint *)leadingConstraint
+          onView:(UIView *)mainView
+withBackgroundView:(UIView *)background {
+    if (leadingConstraint.constant < 0) {
+        [self toggleMenu:menu
+   withLeadingConstraint:leadingConstraint
+                  onView:mainView
+      withBackgroundView:background];
+    }
+}
+
+- (void)closeMenu:(UIView *)menu
+withLeadingConstraint:(NSLayoutConstraint *)leadingConstraint
+           onView:(UIView *)mainView
+withBackgroundView:(UIView *)background {
+    if (leadingConstraint.constant >= 0) {
+        [self toggleMenu:menu
+   withLeadingConstraint:leadingConstraint
+                  onView:mainView
+      withBackgroundView:background];
+    }
+}
+
 - (void)toggleMenu:(UIView *)menu
 withLeadingConstraint:(NSLayoutConstraint *)leadingConstraint
+            onView:(UIView *)mainView
 withBackgroundView:(UIView *)background {
     
     const BOOL open = (leadingConstraint.constant < 0);
@@ -25,10 +50,10 @@ withBackgroundView:(UIView *)background {
         leadingConstraint.constant = -menu.frame.size.width;
     }
     
-    [self.view setNeedsUpdateConstraints];
+    [mainView setNeedsUpdateConstraints];
     [UIView animateWithDuration:ANIMATION_DURATION
                      animations:^{
-        [self.view layoutIfNeeded];
+        [mainView layoutIfNeeded];
         if (open) {
             background.alpha = DARK_BACKGROUND;
         } else {

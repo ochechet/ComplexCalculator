@@ -11,8 +11,22 @@
 #import "CTHFunctionParser.h"
 #import "CALayer+Animations.h"
 #import "CTHCalculationUtil.h"
+#import "UIViewController+ToggleLeftMenu.h"
+#import "IpHistoryManager.h"
+#import "CTHHistoryViewController.h"
+#import "HistoryControllerDelegate.h"
+#import "CTHHistoryPreviewViewController.h"
+#import "CTHIpHistoryItemModel.h"
+#import "Constants.h"
 
-@interface CTHIntegralViewController() <UITextFieldDelegate>
+//NOTE, ochechet: bad design!
+typedef NS_ENUM(NSInteger, HistoryOpenState) {
+    HistoryOpenStateOpen,
+    HistoryOpenStateClosed,
+    HistoryOpenStateToggle
+};
+
+@interface CTHIntegralViewController() <UITextFieldDelegate, HistoryControllerDelegate>
 
 @property(strong, nonatomic) CTHIntegralCalculator *calculator;
 @property(strong, nonatomic) CTHFunctionParser *parser;
@@ -32,6 +46,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *aResultLabel;
 @property (weak, nonatomic) IBOutlet UILabel *functionResultLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalResultLabel;
+
+@property (weak, nonatomic) CTHHistoryViewController *historyController;
+@property (weak, nonatomic) IBOutlet UIView *historyContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *historyContainerLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIView *historyContainerBackgroundView;
+@property (assign, nonatomic) NSInteger selectedHistoryItemIndex;
 
 @end
 
@@ -160,6 +180,7 @@
 
 - (IBAction)tapBeenHandled:(id)sender {
     [self hideKeyBoard];
+
 }
 
 - (void)hideKeyBoard {
@@ -213,6 +234,16 @@
     }
     
     return YES;
+}
+
+#pragma mark - History
+
+- (void)applyHistoryItem:(CTHIpHistoryItemModel *)item {
+    
+}
+
+- (void)shareHistoryItem:(CTHIpHistoryItemModel *)item {
+    
 }
 
 @end

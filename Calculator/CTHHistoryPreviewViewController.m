@@ -40,8 +40,8 @@
 }
 
 - (IBAction)applyButtonBeenTapped:(id)sender {
-    [self.navigationController popToViewController:self.delegate animated:YES];
     [self.delegate applyHistoryItem:self.item];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)shareButtonBeenTapped:(UIButton *)sender {
@@ -80,6 +80,10 @@
         
     }];
     
+    
+}
+- (IBAction)closeButtonBeenTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

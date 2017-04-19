@@ -10,8 +10,6 @@
 
 @protocol HistoryControllerDelegate <NSObject>
 
-- (void)historyItemBeenSelectedAtIndex:(NSInteger)index;
 - (void)applyHistoryItem:(CTHIpHistoryItemModel *)item;
-- (void)shareHistoryItem:(CTHIpHistoryItemModel *)item;
 
 @end

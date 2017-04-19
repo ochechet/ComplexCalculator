@@ -11,7 +11,7 @@
 #import "CTHIpResultTableViewController.h"
 #import "Constants.h"
 #import "CALayer+Animations.h"
-#import "UIViewController+ToggleLeftMenu.h"
+
 #import "IpHistoryManager.h"
 #import "CTHHistoryViewController.h"
 #import "HistoryControllerDelegate.h"
@@ -19,6 +19,12 @@
 #import "CTHIpHistoryItemModel.h"
 
 static NSString *const kToIpResultSegue = @"toIpResultSegue";
+
+typedef NS_ENUM(NSInteger, HistoryOpenState) {
+    HistoryOpenStateOpen,
+    HistoryOpenStateClosed,
+    HistoryOpenStateToggle
+};
 
 @interface CTHIpViewController () <UIPickerViewDataSource, UIPickerViewDelegate, HistoryControllerDelegate>
 
@@ -32,7 +38,7 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
 @property (strong, nonatomic) CTHIpResultModel *resultModel;
 
 @property (weak, nonatomic) CTHHistoryViewController *historyController;
-@property (assign, nonatomic) NSInteger selectedHistoryItemIndex;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *historyButton;
 
 @end
 
@@ -69,30 +75,6 @@ static NSString *const kToIpResultSegue = @"toIpResultSegue";
     [self.calculator persist];
 }
 
-- (void)toggleHistory {
-    self.historyController.itemsArray = [[IpHistoryManager sharedManager] getHistoryInfoArray];
-    [self.historyController.tableView reloadData];
-    [self toggleMenu:self.historyContainer
-withLeadingConstraint:self.historyContainerLeadingConstraint
-     withBackgroundView:self.historyContainerBackgroundView];
-}
-
-- (IBAction)historyButtonBeenPressed:(id)sender {
-    [self toggleHistory];
-}
-
-- (IBAction)leftEdgeBeenPanned:(UIScreenEdgePanGestureRecognizer *)sender {
-    [self toggleHistory];
-}
-
-- (IBAction)tapBeenHandled:(UITapGestureRecognizer *)sender {
-    CGPoint loc = [sender locationInView:self.view];
-    UIView* tapped = [self.view hitTest:loc withEvent:nil];
-    if (self.historyContainerLeadingConstraint.constant >= 0 && tapped == self.historyContainerBackgroundView) {
-        [self toggleHistory];
-    }
-}
-
 - (IBAction)ipAdressFieldDidChanged:(UITextField *)sender {
     self.calculator.ipAddressString = sender.text;
 }
@@ -114,12 +96,6 @@ withLeadingConstraint:self.historyContainerLeadingConstraint
 }
 
 #pragma mark - HistoryControllerDelegate
-- (void)historyItemBeenSelectedAtIndex:(NSInteger)index {
-    [self toggleHistory];
-    self.selectedHistoryItemIndex = index;
-    [self performSegueWithIdentifier:kHistoryItemPreviewSegue sender:self];
-}
-
 - (void)applyHistoryItem:(CTHIpHistoryItemModel *)item {
     self.ipAddressField.text = item.ip;
     [self selectMaskAddress:item.mask];
@@ -127,10 +103,6 @@ withLeadingConstraint:self.historyContainerLeadingConstraint
     self.calculator.ipAddressString = item.ip;
     self.calculator.mascAdressString = item.mask;
     [self performCalculation];
-}
-
-- (void)shareHistoryItem:(CTHIpHistoryItemModel *)item {
-    
 }
 
 #pragma mark - UIPickerView
@@ -164,12 +136,11 @@ withLeadingConstraint:self.historyContainerLeadingConstraint
     } else if ([segue.identifier isEqualToString:kEmbedHistorySegue]) {
         self.historyController = segue.destinationViewController;
         self.historyController.delegate = self;
-    } else if ([segue.identifier isEqualToString:kHistoryItemPreviewSegue]) {
-        CTHIpHistoryItemModel *item = [[[IpHistoryManager sharedManager] getHistoryInfoArray]
-                                      objectAtIndex:self.selectedHistoryItemIndex];
-        CTHHistoryPreviewViewController *preview = ((CTHHistoryPreviewViewController *)segue.destinationViewController);
-        preview.item = item;
-        preview.delegate = self;
+        self.historyController.itemsArray = [[IpHistoryManager sharedManager] getHistoryInfoArray];
+        self.historyController.historyContainer = self.historyContainer;
+        self.historyController.historyButton = self.historyButton;
+        self.historyController.historyContainerLeadingConstraint = self.historyContainerLeadingConstraint;
+        self.historyController.historyContainerBackgroundView = self.historyContainerBackgroundView;
     }
 }
 
