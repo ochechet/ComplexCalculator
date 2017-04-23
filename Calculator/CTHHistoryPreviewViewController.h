@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class CTHIpHistoryItemModel;
+@class IpHistoryItemModel;
+@protocol HistoryItemModelProtocol;
 @protocol HistoryControllerDelegate;
 
 @interface CTHHistoryPreviewViewController : UIViewController
 
 @property (weak, nonatomic) UIViewController<HistoryControllerDelegate> *delegate;
-@property (strong, nonatomic) CTHIpHistoryItemModel *item;
+@property (strong, nonatomic) id<HistoryItemModelProtocol> item;
 
 @end

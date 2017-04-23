@@ -205,16 +205,16 @@
                                     <constraint firstItem="TIS-3X-zbt" firstAttribute="top" secondItem="xTY-zT-Yae" secondAttribute="bottom" id="yye-Wp-ONd"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mH3-MI-B5P">
-                                <rect key="frame" x="-1000" y="64" width="360" height="487"/>
-                                <connections>
-                                    <segue destination="egL-pJ-SBv" kind="embed" id="EO6-tZ-XX8"/>
-                                </connections>
-                            </containerView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jE0-qf-73E">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mH3-MI-B5P">
+                                <rect key="frame" x="-1000" y="64" width="360" height="487"/>
+                                <connections>
+                                    <segue destination="egL-pJ-SBv" kind="embed" identifier="integralEmbedHistorySegue" id="EO6-tZ-XX8"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -280,10 +280,6 @@
                                 <include reference="Vb6-Sc-cDp"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="ePH-r6-2HW" appends="YES" id="M02-F4-exA"/>
-                            <outletCollection property="gestureRecognizers" destination="LgH-lf-BXk" appends="YES" id="3da-vY-PEE"/>
-                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="WIc-ZK-lAI"/>
                     <navigationItem key="navigationItem" id="Mt3-xx-KGf">
@@ -301,6 +297,7 @@
                         <outlet property="bResultLabel" destination="DxB-6E-DDd" id="dXe-Me-ZgQ"/>
                         <outlet property="functionFiled" destination="req-H9-jay" id="yd8-1S-0sI"/>
                         <outlet property="functionResultLabel" destination="xTY-zT-Yae" id="bqs-l2-qC6"/>
+                        <outlet property="historyButton" destination="u7l-mg-tfY" id="035-p3-iLm"/>
                         <outlet property="historyContainer" destination="mH3-MI-B5P" id="XpY-GX-BrR"/>
                         <outlet property="historyContainerBackgroundView" destination="jE0-qf-73E" id="MaU-Dj-Zsj"/>
                         <outlet property="historyContainerLeadingConstraint" destination="rOz-vL-dCT" id="EQr-U7-Fq8"/>
@@ -309,17 +306,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qer-ad-H36" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="ePH-r6-2HW">
-                    <rectEdge key="edges" right="YES"/>
-                    <connections>
-                        <action selector="rightEdgeBeenPanned:" destination="ynu-Nu-yaA" id="ZZH-Jj-gjz"/>
-                    </connections>
-                </screenEdgePanGestureRecognizer>
-                <tapGestureRecognizer id="LgH-lf-BXk">
-                    <connections>
-                        <action selector="tapBeenHandled:" destination="ynu-Nu-yaA" id="qXO-Z7-fpJ"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1537" y="1158"/>
         </scene>
@@ -1630,7 +1616,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAh-eh-MoR">
                                 <rect key="frame" x="-1000" y="64" width="360" height="487"/>
                                 <connections>
-                                    <segue destination="egL-pJ-SBv" kind="embed" identifier="historySegue" id="xWT-pL-JgX"/>
+                                    <segue destination="J2r-Rp-a0m" kind="embed" identifier="ipEmbedHistorySegue" id="pAE-3v-4t3"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -1723,7 +1709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bzg-qw-sX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1531" y="1907"/>
+            <point key="canvasLocation" x="1523" y="1907"/>
         </scene>
         <!--Ip Result Table View Controller-->
         <scene sceneID="GjX-HT-IhH">
@@ -2133,10 +2119,10 @@
             </objects>
             <point key="canvasLocation" x="2385" y="1907"/>
         </scene>
-        <!--History View Controller-->
+        <!--Integral History View Controller-->
         <scene sceneID="5lN-jc-GQn">
             <objects>
-                <tableViewController id="egL-pJ-SBv" customClass="CTHHistoryViewController" sceneMemberID="viewController">
+                <tableViewController id="egL-pJ-SBv" customClass="IntegralHistoryViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="167" sectionHeaderHeight="28" sectionFooterHeight="28" id="iUD-aL-ScE">
                         <rect key="frame" x="0.0" y="0.0" width="360" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2193,12 +2179,12 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="dgP-Hs-8Gh" kind="presentation" identifier="historyItemPreviewSegue" id="zge-gA-r7T"/>
+                        <segue destination="dgP-Hs-8Gh" kind="presentation" identifier="integralHistoryItemPreviewSegue" id="zge-gA-r7T"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OT-pE-w3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3055" y="1193.5"/>
+            <point key="canvasLocation" x="3127" y="1145.5"/>
         </scene>
         <!--History Preview View Controller-->
         <scene sceneID="keG-TA-eEb">
@@ -2354,7 +2340,74 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tCh-QM-xzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3793" y="1194"/>
+            <point key="canvasLocation" x="4031" y="1458"/>
+        </scene>
+        <!--Ip History View Controller-->
+        <scene sceneID="enT-gr-fNZ">
+            <objects>
+                <tableViewController id="J2r-Rp-a0m" customClass="IpHistoryViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="167" sectionHeaderHeight="28" sectionFooterHeight="28" id="pLK-I5-wjO">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="200" id="zKM-Db-oI4" customClass="CTHHistoryTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="360" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zKM-Db-oI4" id="qhD-VL-X9d">
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gb9-i4-KaX">
+                                            <rect key="frame" x="8" y="8" width="216" height="183"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYK-iG-ErM">
+                                            <rect key="frame" x="232" y="8" width="120" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sTD-Ob-2ws">
+                                            <rect key="frame" x="232" y="37" width="120" height="154"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="sTD-Ob-2ws" firstAttribute="bottom" secondItem="qhD-VL-X9d" secondAttribute="bottomMargin" id="3ny-EG-Uqu"/>
+                                        <constraint firstItem="sYK-iG-ErM" firstAttribute="leading" secondItem="gb9-i4-KaX" secondAttribute="trailing" constant="8" id="AQq-ax-4GQ"/>
+                                        <constraint firstItem="gb9-i4-KaX" firstAttribute="top" secondItem="qhD-VL-X9d" secondAttribute="topMargin" id="Fto-XI-l0g"/>
+                                        <constraint firstItem="sYK-iG-ErM" firstAttribute="top" secondItem="qhD-VL-X9d" secondAttribute="topMargin" id="POY-dZ-gRb"/>
+                                        <constraint firstItem="sYK-iG-ErM" firstAttribute="trailing" secondItem="qhD-VL-X9d" secondAttribute="trailingMargin" id="Swy-jj-sXL"/>
+                                        <constraint firstItem="sTD-Ob-2ws" firstAttribute="top" secondItem="sYK-iG-ErM" secondAttribute="bottom" constant="8" id="VE9-P8-ikh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="gb9-i4-KaX" secondAttribute="bottom" id="WcC-1L-6TN"/>
+                                        <constraint firstItem="gb9-i4-KaX" firstAttribute="width" secondItem="qhD-VL-X9d" secondAttribute="width" multiplier="0.6" id="Zp4-UE-cuV"/>
+                                        <constraint firstItem="gb9-i4-KaX" firstAttribute="leading" secondItem="qhD-VL-X9d" secondAttribute="leadingMargin" id="ab6-sX-BMa"/>
+                                        <constraint firstItem="sTD-Ob-2ws" firstAttribute="leading" secondItem="gb9-i4-KaX" secondAttribute="trailing" constant="8" id="kab-yP-GqA"/>
+                                        <constraint firstItem="sTD-Ob-2ws" firstAttribute="trailing" secondItem="qhD-VL-X9d" secondAttribute="trailingMargin" id="w8D-fk-r13"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="historyImageView" destination="gb9-i4-KaX" id="h8K-2M-nT2"/>
+                                    <outlet property="info" destination="sTD-Ob-2ws" id="kmN-he-8Jc"/>
+                                    <outlet property="title" destination="sYK-iG-ErM" id="5jd-O0-kMZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="J2r-Rp-a0m" id="Olt-nm-vZe"/>
+                            <outlet property="delegate" destination="J2r-Rp-a0m" id="yQ7-72-5iw"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="dgP-Hs-8Gh" kind="presentation" identifier="ipHistoryItemPreviewSegue" id="bKQ-3d-4ep"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oxq-p9-DYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3127" y="1907"/>
         </scene>
     </scenes>
     <resources>
@@ -2366,6 +2419,6 @@
         <image name="share" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EO6-tZ-XX8"/>
+        <segue reference="zge-gA-r7T"/>
     </inferredMetricsTieBreakers>
 </document>

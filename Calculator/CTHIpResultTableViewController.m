@@ -7,7 +7,7 @@
 //
 
 #import "CTHIpResultTableViewController.h"
-#import "IpHistoryManager.h"
+#import "HistoryManager.h"
 
 @interface CTHIpResultTableViewController ()
 
@@ -68,12 +68,13 @@
     NSData *meta = [NSJSONSerialization dataWithJSONObject:metaDictionary
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];
-    IpHistoryManager *manager = [IpHistoryManager sharedManager];
-    if (![manager itemWithMetaExist:meta]) {
-        [manager saveIpHistoryItemWithImage:image
-                                      title:self.resultModel.ipAddress
-                                       info:infoString
-                                       meta:meta];
+    HistoryManager *manager = [HistoryManager sharedManager];
+    if (![manager itemOfType:HistoryItemTypeIp withMetaExist:meta]) {
+        [manager saveHistoryItemOfType:HistoryItemTypeIp
+                             withImage:image
+                                 title:self.resultModel.ipAddress
+                                  info:infoString
+                                  meta:meta];
     }
 }
 

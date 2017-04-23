@@ -12,11 +12,11 @@
 #import "Constants.h"
 #import "CALayer+Animations.h"
 
-#import "IpHistoryManager.h"
+#import "HistoryManager.h"
 #import "CTHHistoryViewController.h"
 #import "HistoryControllerDelegate.h"
 #import "CTHHistoryPreviewViewController.h"
-#import "CTHIpHistoryItemModel.h"
+#import "IpHistoryItemModel.h"
 
 static NSString *const kToIpResultSegue = @"toIpResultSegue";
 
@@ -30,14 +30,14 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 
 @property (weak, nonatomic) IBOutlet UITextField *ipAddressField;
 @property (weak, nonatomic) IBOutlet UIPickerView *maAddressPicker;
-@property (weak, nonatomic) IBOutlet UIView *historyContainer;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *historyContainerLeadingConstraint;
-@property (weak, nonatomic) IBOutlet UIView *historyContainerBackgroundView;
 
 @property (strong, nonatomic) CTHIpCalculator *calculator;
 @property (strong, nonatomic) CTHIpResultModel *resultModel;
 
 @property (weak, nonatomic) CTHHistoryViewController *historyController;
+@property (weak, nonatomic) IBOutlet UIView *historyContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *historyContainerLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIView *historyContainerBackgroundView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *historyButton;
 
 @end
@@ -56,8 +56,10 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
     NSString *ipToUse = [storage valueForKey:kIpToUseKey];
     NSString *maskToUse = [storage valueForKey:kMaskToUseKey];
     
+    self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIp];
+    
     if (ipToUse && maskToUse) {
-        CTHIpHistoryItemModel *item = [[CTHIpHistoryItemModel alloc] initWithImage:nil title:nil info:nil ip:ipToUse mask:maskToUse];
+        IpHistoryItemModel *item = [[IpHistoryItemModel alloc] initWithImage:nil title:nil info:nil ip:ipToUse mask:maskToUse];
         [storage removeObjectForKey:kIpToUseKey];
         [storage removeObjectForKey:kMaskToUseKey];
         [storage synchronize];
@@ -96,7 +98,7 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 }
 
 #pragma mark - HistoryControllerDelegate
-- (void)applyHistoryItem:(CTHIpHistoryItemModel *)item {
+- (void)applyHistoryItem:(IpHistoryItemModel *)item {
     self.ipAddressField.text = item.ip;
     [self selectMaskAddress:item.mask];
     
@@ -133,10 +135,10 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
     if ([segue.identifier isEqualToString:kToIpResultSegue]) {
         CTHIpResultTableViewController *controller = segue.destinationViewController;
         controller.resultModel = self.resultModel;
-    } else if ([segue.identifier isEqualToString:kEmbedHistorySegue]) {
+    } else if ([segue.identifier isEqualToString:kIpEmbedHistorySegue]) {
         self.historyController = segue.destinationViewController;
         self.historyController.delegate = self;
-        self.historyController.itemsArray = [[IpHistoryManager sharedManager] getHistoryInfoArray];
+        self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIp];
         self.historyController.historyContainer = self.historyContainer;
         self.historyController.historyButton = self.historyButton;
         self.historyController.historyContainerLeadingConstraint = self.historyContainerLeadingConstraint;

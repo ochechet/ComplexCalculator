@@ -1,14 +1,14 @@
 //
-//  CTHIpHistoryItemModel.m
+//  HistoryItemModel.m
 //  Calculator
 //
-//  Created by AlexCheetah on 3/12/17.
+//  Created by AlexCheetah on 4/22/17.
 //  Copyright © 2017 Olexander_Chechetkin. All rights reserved.
 //
 
-#import "CTHIpHistoryItemModel.h"
+#import "IntegralHistoryItemModel.h"
 
-@interface CTHIpHistoryItemModel ()
+@interface IntegralHistoryItemModel ()
 
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *title;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation CTHIpHistoryItemModel
+@implementation IntegralHistoryItemModel
 
 - (instancetype)initWithImage:(UIImage *)image
                         title:(NSString *)title

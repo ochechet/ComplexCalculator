@@ -1,5 +1,5 @@
 //
-//  IpHistoryItem+CoreDataProperties.h
+//  IntegralHistoryItem+CoreDataProperties.h
 //  Calculator
 //
 //  Created by AlexCheetah on 4/22/17.
@@ -9,11 +9,11 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "IpHistoryItem.h"
+#import "IntegralHistoryItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IpHistoryItem (CoreDataProperties)
+@interface IntegralHistoryItem (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSData *image;
 @property (nullable, nonatomic, retain) NSString *info;

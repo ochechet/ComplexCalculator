@@ -8,7 +8,7 @@
 
 #import "CTHHistoryPreviewViewController.h"
 #import "HistoryControllerDelegate.h"
-#import "CTHIpHistoryItemModel.h"
+#import "HistoryItemModelProtocol.h"
 #import "Constants.h"
 
 

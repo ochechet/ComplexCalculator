@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol HistoryControllerDelegate;
-@class CTHIpHistoryItemModel;
+@protocol HistoryItemModelProtocol;
+@class IpHistoryItemModel;
 
 @interface CTHHistoryViewController : UITableViewController
 
@@ -19,6 +20,6 @@
 @property (weak, nonatomic) NSLayoutConstraint *historyContainerLeadingConstraint;
 @property (weak, nonatomic) UIView *historyContainerBackgroundView;
 
-@property (strong, nonatomic) NSArray<CTHIpHistoryItemModel *> *itemsArray;
+@property (strong, nonatomic) NSArray<id<HistoryItemModelProtocol>> *itemsArray;
 
 @end

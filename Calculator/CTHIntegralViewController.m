@@ -12,11 +12,11 @@
 #import "CALayer+Animations.h"
 #import "CTHCalculationUtil.h"
 #import "UIViewController+ToggleLeftMenu.h"
-#import "IpHistoryManager.h"
+#import "HistoryManager.h"
 #import "CTHHistoryViewController.h"
 #import "HistoryControllerDelegate.h"
 #import "CTHHistoryPreviewViewController.h"
-#import "CTHIpHistoryItemModel.h"
+#import "IpHistoryItemModel.h"
 #import "Constants.h"
 
 //NOTE, ochechet: bad design!
@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 @property (weak, nonatomic) IBOutlet UIView *historyContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *historyContainerLeadingConstraint;
 @property (weak, nonatomic) IBOutlet UIView *historyContainerBackgroundView;
-@property (assign, nonatomic) NSInteger selectedHistoryItemIndex;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *historyButton;
 
 @end
 
@@ -63,6 +63,11 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
     self.parser = [[CTHFunctionParser alloc] init];
     
     [self configureKeyboard];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIntegral];
 }
 
 - (void)configureKeyboard {
@@ -177,12 +182,12 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 - (void)doneButtonBeenPressed:(id)sender {
     [self hideKeyBoard];
 }
-
+/*
 - (IBAction)tapBeenHandled:(id)sender {
     [self hideKeyBoard];
 
 }
-
+*/
 - (void)hideKeyBoard {
     UITextField *textField = [self getResponderTextField];
     if (textField) {
@@ -200,7 +205,7 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
                                                 fromLimit:getDouble(self.aLimitField.text)
                                                   toLimit:getDouble(self.bLimitField.text)];
     [self showResultViewWithResult:r];
-    
+    [self saveHistory];
 }
 
 - (void)showResultViewWithResult:(double)result {
@@ -237,13 +242,46 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 }
 
 #pragma mark - History
+- (void)saveHistory {
+    UIImage *image = [[UIImage alloc] init];
+    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 1); //making image from view
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSString *infoString = @"INFO";/*[NSString stringWithFormat:@"Ip: %@\nMask: %@\nNetwork: %@\nHost: %@\nBroadcast: %@\nFirst host: %@\nLast host: %@",self.resultModel.ipAddress, self.resultModel.maskAddress, self.resultModel.networkAddress, self.resultModel.hostAddress, self.resultModel.broadcast, self.resultModel.minimalHost, self.resultModel.maximalHost];*/
+    
+    NSDictionary *metaDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    @"ONE", @"one",
+                                    @"TWO", @"two", nil];
+    NSData *meta = [NSJSONSerialization dataWithJSONObject:metaDictionary
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    HistoryManager *manager = [HistoryManager sharedManager];
+    if (![manager itemOfType:HistoryItemTypeIp withMetaExist:meta]) {
+        [manager saveHistoryItemOfType:HistoryItemTypeIntegral
+                             withImage:image
+                                 title:@"TITLE"
+                                  info:infoString
+                                  meta:meta];
+    }
+}
 
-- (void)applyHistoryItem:(CTHIpHistoryItemModel *)item {
+- (void)applyHistoryItem:(IpHistoryItemModel *)item {
     
 }
 
-- (void)shareHistoryItem:(CTHIpHistoryItemModel *)item {
-    
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:kIntegralEmbedHistorySegue]) {
+        self.historyController = segue.destinationViewController;
+        self.historyController.delegate = self;
+        self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIntegral];
+        self.historyController.historyContainer = self.historyContainer;
+        self.historyController.historyButton = self.historyButton;
+        self.historyController.historyContainerLeadingConstraint = self.historyContainerLeadingConstraint;
+        self.historyController.historyContainerBackgroundView = self.historyContainerBackgroundView;
+    }
 }
 
 @end

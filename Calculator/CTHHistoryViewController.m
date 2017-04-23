@@ -7,16 +7,14 @@
 //
 
 #import "CTHHistoryViewController.h"
+#import "HistoryItemModelProtocol.h"
 #import "CTHHistoryTableViewCell.h"
-#import "IpHistoryManager.h"
-#import "CTHIpHistoryItemModel.h"
+#import "HistoryManager.h"
 #import "HistoryControllerDelegate.h"
-#import "CTHHistoryPreviewViewController.h"
 #import "UIViewController+ToggleLeftMenu.h"
-#import "Constants.h"
 
 #define ANIMATION_DURATION 0.8
-#define DARK_BACKGROUND 0.6;
+#define DARK_BACKGROUND 0.6
 
 typedef NS_ENUM(NSInteger, HistoryOpenState) {
     HistoryOpenStateOpen,
@@ -25,10 +23,6 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 };
 
 static NSString *const cellReusableIdentifier = @"historyCell";
-
-@interface CTHHistoryViewController ()
-    @property (assign, nonatomic) NSInteger selectedHistoryItemIndex;
-@end
 
 @implementation CTHHistoryViewController
 
@@ -47,7 +41,7 @@ static NSString *const cellReusableIdentifier = @"historyCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CTHIpHistoryItemModel *infoModel = [self cellInfoForIndexPath:indexPath];
+    id<HistoryItemModelProtocol> infoModel = [self cellInfoForIndexPath:indexPath];
     CTHHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReusableIdentifier];
     
     cell.historyImageView.image = infoModel.image;
@@ -57,13 +51,8 @@ static NSString *const cellReusableIdentifier = @"historyCell";
     return cell;
 }
 
-- (CTHIpHistoryItemModel *)cellInfoForIndexPath:(NSIndexPath *)indexPath {
+- (id<HistoryItemModelProtocol>)cellInfoForIndexPath:(NSIndexPath *)indexPath {
     return [self.itemsArray objectAtIndex:indexPath.row];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectedHistoryItemIndex = indexPath.row;
-    [self performSegueWithIdentifier:kHistoryItemPreviewSegue sender:self];
 }
 
 #pragma mark - History actions
@@ -100,14 +89,6 @@ static NSString *const cellReusableIdentifier = @"historyCell";
     [self toggleHistoryOpenState:HistoryOpenStateToggle];
 }
 
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kHistoryItemPreviewSegue]) {
-        CTHIpHistoryItemModel *item = [self.itemsArray objectAtIndex:self.selectedHistoryItemIndex];
-        CTHHistoryPreviewViewController *preview = ((CTHHistoryPreviewViewController *)segue.destinationViewController);
-        preview.item = item;
-        preview.delegate = self.delegate;
-    }
-}
+
 
 @end

@@ -10,12 +10,10 @@
 
 @interface Constants : NSObject
 
-extern NSString * const kUnwindFormMainToIntegralSegue;
-extern NSString * const kToIpViewControllerSegue;
-extern NSString * const kUnwindFormIpToMainViewController;
-extern NSString * const kFromIntegralToMainSegue;
-extern NSString * const kEmbedHistorySegue;
-extern NSString * const kHistoryItemPreviewSegue;
+extern NSString * const kIpEmbedHistorySegue;
+extern NSString * const kIntegralEmbedHistorySegue;
+extern NSString * const kIpHistoryItemPreviewSegue;
+extern NSString * const kIntegralHistoryItemPreviewSegue;
 
 extern NSString * const kOpenUrlApplicationId;
 extern NSString * const kOpenUrlActivityTypeKey;

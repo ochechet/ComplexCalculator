@@ -10,12 +10,10 @@
 
 @implementation Constants
 
-NSString * const kUnwindFormMainToIntegralSegue = @"unwindFromMainToIntegralSegue";
-NSString * const kToIpViewControllerSegue = @"toIpViewControllerSegue";
-NSString * const kUnwindFormIpToMainViewController = @"unwindFromIpToMainSegue";
-NSString * const kFromIntegralToMainSegue = @"fromIntegralToMainSegue";
-NSString * const kEmbedHistorySegue = @"historySegue";
-NSString * const kHistoryItemPreviewSegue = @"historyItemPreviewSegue";
+NSString * const kIpEmbedHistorySegue = @"ipEmbedHistorySegue";
+NSString * const kIntegralEmbedHistorySegue = @"integralEmbedHistorySegue";
+NSString * const kIpHistoryItemPreviewSegue = @"ipHistoryItemPreviewSegue";
+NSString * const kIntegralHistoryItemPreviewSegue = @"integralHistoryItemPreviewSegue";
 
 NSString * const kOpenUrlApplicationId = @"alex4eetahFlameCalculator";
 NSString * const kOpenUrlActivityTypeKey = @"openActivityType";

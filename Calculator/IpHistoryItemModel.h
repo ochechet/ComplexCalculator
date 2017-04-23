@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "HistoryItemModelProtocol.h"
 
-@interface CTHIpHistoryItemModel : NSObject
+@interface IpHistoryItemModel : NSObject<HistoryItemModelProtocol>
 
 @property (strong, nonatomic, readonly) UIImage *image;
 @property (strong, nonatomic, readonly) NSString *title;

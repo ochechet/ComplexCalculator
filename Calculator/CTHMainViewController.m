@@ -95,22 +95,6 @@
     
 }
 
-#pragma mark - Navigation
-- (IBAction)leftEdgeBeenPanned:(UIScreenEdgePanGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        [self performSegueWithIdentifier:kUnwindFormMainToIntegralSegue sender:self];
-    }
-}
-- (IBAction)rightEdgeBeenPanned:(UIScreenEdgePanGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateEnded) {
-        [self performSegueWithIdentifier:kToIpViewControllerSegue sender:self];
-    }
-}
-
-- (IBAction)unwindToMainViewController:(UIStoryboardSegue *)segue {
-    
-}
-
 #pragma mark - UI state configuration
 - (void)bracketsDisabeling:(NSString*)which
 {

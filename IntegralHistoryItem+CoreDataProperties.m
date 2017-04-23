@@ -1,5 +1,5 @@
 //
-//  IpHistoryItem+CoreDataProperties.m
+//  IntegralHistoryItem+CoreDataProperties.m
 //  Calculator
 //
 //  Created by AlexCheetah on 4/22/17.
@@ -9,9 +9,9 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "IpHistoryItem+CoreDataProperties.h"
+#import "IntegralHistoryItem+CoreDataProperties.h"
 
-@implementation IpHistoryItem (CoreDataProperties)
+@implementation IntegralHistoryItem (CoreDataProperties)
 
 @dynamic image;
 @dynamic info;
