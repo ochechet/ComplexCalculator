@@ -14,7 +14,13 @@
 @property (strong, nonatomic, readonly) UIImage *image;
 @property (strong, nonatomic, readonly) NSString *title;
 @property (strong, nonatomic, readonly) NSString *info;
+
+@optional
 @property (strong, nonatomic, readonly) NSString *ip;
 @property (strong, nonatomic, readonly) NSString *mask;
+
+@property (strong, nonatomic, readonly) NSString *function;
+@property (strong, nonatomic, readonly) NSString *aLimit;
+@property (strong, nonatomic, readonly) NSString *bLimit;
 
 @end

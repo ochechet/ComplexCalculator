@@ -15,6 +15,13 @@ typedef NS_ENUM(NSInteger, HistoryItemType) {
     HistoryItemTypeIntegral
 };
 
+extern NSString * const kIpHistoryMetaKeyIp;
+extern NSString * const kIpHistoryMetaKeyMask;
+
+extern NSString * const kIntegralHistoryMetaKeyFunction;
+extern NSString * const kIntegralHistoryMetaKeyALimit;
+extern NSString * const kIntegralHistoryMetaKeyBLimit;
+
 @interface HistoryManager : NSObject
 
 + (instancetype) sharedManager;

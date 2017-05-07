@@ -8,15 +8,15 @@
 
 #import "CTHIntegralViewController.h"
 #import "CTHIntegralCalculator.h"
-#import "CTHFunctionParser.h"
+#import "IntegralCalculationsResultModel.h"
 #import "CALayer+Animations.h"
-#import "CTHCalculationUtil.h"
+
 #import "UIViewController+ToggleLeftMenu.h"
 #import "HistoryManager.h"
 #import "CTHHistoryViewController.h"
 #import "HistoryControllerDelegate.h"
 #import "CTHHistoryPreviewViewController.h"
-#import "IpHistoryItemModel.h"
+#import "IntegralHistoryItemModel.h"
 #import "Constants.h"
 
 //NOTE, ochechet: bad design!
@@ -29,7 +29,6 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 @interface CTHIntegralViewController() <UITextFieldDelegate, HistoryControllerDelegate>
 
 @property(strong, nonatomic) CTHIntegralCalculator *calculator;
-@property(strong, nonatomic) CTHFunctionParser *parser;
 
 @property (weak, nonatomic) IBOutlet UITextField *aLimitField;
 @property (weak, nonatomic) IBOutlet UITextField *bLimitField;
@@ -60,14 +59,48 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 #pragma mark - initialization
 - (void)viewDidLoad {
     self.calculator = [[CTHIntegralCalculator alloc] init];
-    self.parser = [[CTHFunctionParser alloc] init];
-    
     [self configureKeyboard];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doCustomLayout)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIntegral];
+    [self doCustomLayout];
+}
+
+- (void)doCustomLayout {
+    NSUserDefaults *storage = [NSUserDefaults standardUserDefaults];
+    NSString *functionToUse = [storage valueForKey:kFunctionToUseKey];
+    NSString *aLimitToUse = [storage valueForKey:kALimitToUseKey];
+    NSString *bLimitToUse = [storage valueForKey:kBLimitToUseKey];
+    
+    if (functionToUse && aLimitToUse && bLimitToUse) {
+        IntegralHistoryItemModel *item = [[IntegralHistoryItemModel alloc] initWithImage:nil
+                                                                                   title:nil
+                                                                                    info:nil
+                                                                                function:functionToUse
+                                                                                  aLimit:aLimitToUse
+                                                                                  bLimit:bLimitToUse];
+        [storage removeObjectForKey:kFunctionToUseKey];
+        [storage removeObjectForKey:kALimitToUseKey];
+        [storage removeObjectForKey:kBLimitToUseKey];
+        [storage synchronize];
+        
+        [self applyHistoryItem:item];
+    } else {
+        [self.calculator refresh];
+        self.functionFiled.text = self.calculator.function;
+        self.aLimitField.text = self.calculator.aLimit;
+        self.bLimitField.text = self.calculator.bLimit;
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.calculator persist];
 }
 
 - (void)configureKeyboard {
@@ -182,12 +215,7 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 - (void)doneButtonBeenPressed:(id)sender {
     [self hideKeyBoard];
 }
-/*
-- (IBAction)tapBeenHandled:(id)sender {
-    [self hideKeyBoard];
 
-}
-*/
 - (void)hideKeyBoard {
     UITextField *textField = [self getResponderTextField];
     if (textField) {
@@ -195,17 +223,52 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
     }
 }
 
+#pragma mark - Actions
+- (IBAction)aLimitFieldChanged:(id)sender {
+    self.calculator.aLimit = self.aLimitField.text;
+}
+
+- (IBAction)bLimitFieldChanged:(id)sender {
+    self.calculator.bLimit = self.bLimitField.text;
+}
+
+- (IBAction)functionFieldChanged:(id)sender {
+    self.calculator.function = self.functionFiled.text;
+}
+
 #pragma mark - Calculations
-- (IBAction)calculateButtonPressed:(id)sender {
-    if (![self validateInput]) {
-        return ;
+- (void)calculate {
+    [self hideKeyBoard];
+    self.calculator.bLimit = self.bLimitField.text;
+    self.calculator.aLimit = self.aLimitField.text;
+    self.calculator.function = self.functionFiled.text;
+    
+    IntegralCalculationsResultModel *result = [self.calculator calculateDefinedIntegral];
+
+    if (result.success) {
+        [self showResultViewWithResult:result.result];
+        [self saveHistory];
+    } else {
+        switch (result.failReason) {
+            case FailReasonNoALimit:
+                [self.aLimitField.layer animateWrongInput];
+                break;
+            case FailReasonNoBLimit:
+                [self.bLimitField.layer animateWrongInput];
+                break;
+            case FailReasonNoFunction:
+                [self.functionFiled.layer animateWrongInput];
+                break;
+            case FailReasonWrongLimits:
+                [self.aLimitField.layer animateWrongInput];
+                [self.bLimitField.layer animateWrongInput];
+                break;
+        }
     }
-    double(^block)(double x) = [self.parser getFunctionFromString:self.functionFiled.text];
-    double r = [self.calculator calculateDefinedIntegralWithFunction:block
-                                                fromLimit:getDouble(self.aLimitField.text)
-                                                  toLimit:getDouble(self.bLimitField.text)];
-    [self showResultViewWithResult:r];
-    [self saveHistory];
+}
+
+- (IBAction)calculateButtonPressed:(id)sender {
+    [self calculate];
 }
 
 - (void)showResultViewWithResult:(double)result {
@@ -216,31 +279,6 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
     self.totalResultLabel.text = [NSString stringWithFormat:@"%f", result];
 }
 
-- (bool)validateInput {
-    if (false/*function*/) {
-        [self.functionFiled.layer animateWrongInput];
-        return NO;
-    }
-    
-    if (![CTHCalculationUtil isNumeric:self.aLimitField.text]) {
-        [self.aLimitField.layer animateWrongInput];
-        return NO;
-    }
-    
-    if (![CTHCalculationUtil isNumeric:self.bLimitField.text]) {
-        [self.bLimitField.layer animateWrongInput];
-        return NO;
-    }
-    
-    if (getDouble(self.aLimitField.text) >= getDouble(self.bLimitField.text)){
-        [self.aLimitField.layer animateWrongInput];
-        [self.bLimitField.layer animateWrongInput];
-        return NO;
-    }
-    
-    return YES;
-}
-
 #pragma mark - History
 - (void)saveHistory {
     UIImage *image = [[UIImage alloc] init];
@@ -249,26 +287,32 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    NSString *infoString = @"INFO";/*[NSString stringWithFormat:@"Ip: %@\nMask: %@\nNetwork: %@\nHost: %@\nBroadcast: %@\nFirst host: %@\nLast host: %@",self.resultModel.ipAddress, self.resultModel.maskAddress, self.resultModel.networkAddress, self.resultModel.hostAddress, self.resultModel.broadcast, self.resultModel.minimalHost, self.resultModel.maximalHost];*/
+    NSString *infoString = [NSString stringWithFormat:@"Function: %@\nLimit a: %@\nLimit b: %@", self.functionFiled.text, self.aLimitField.text, self.bLimitField.text];
     
     NSDictionary *metaDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"ONE", @"one",
-                                    @"TWO", @"two", nil];
+                                    self.functionFiled.text, kIntegralHistoryMetaKeyFunction,
+                                    self.aLimitField.text, kIntegralHistoryMetaKeyALimit,
+                                    self.bLimitField.text, kIntegralHistoryMetaKeyBLimit, nil];
     NSData *meta = [NSJSONSerialization dataWithJSONObject:metaDictionary
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];
     HistoryManager *manager = [HistoryManager sharedManager];
-    if (![manager itemOfType:HistoryItemTypeIp withMetaExist:meta]) {
+    if (![manager itemOfType:HistoryItemTypeIntegral withMetaExist:meta]) {
         [manager saveHistoryItemOfType:HistoryItemTypeIntegral
                              withImage:image
-                                 title:@"TITLE"
+                                 title:self.functionFiled.text
                                   info:infoString
                                   meta:meta];
     }
 }
 
-- (void)applyHistoryItem:(IpHistoryItemModel *)item {
-    
+- (void)applyHistoryItem:(id<HistoryItemModelProtocol>)item {
+    IntegralHistoryItemModel *integralItem = (IntegralHistoryItemModel *)item;
+    self.functionFiled.text = integralItem.function;
+    self.aLimitField.text = integralItem.aLimit;
+    self.bLimitField.text = integralItem.bLimit;
+
+    [self calculate];
 }
 
 #pragma mark - Navigation

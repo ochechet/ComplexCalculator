@@ -77,6 +77,7 @@
         NSString *s = [NSString stringWithCharacters:buffer length:i+1];
         if ([self.functionkeys indexOfObject:s] != NSNotFound) {
             block = [self.functionsDict objectForKey:s];
+            
             if (len >= i+3 &&
                 buffer[i+1] == '(' &&
                 buffer[i+2] >= 'A' && buffer[i+2] <= 'z' &&

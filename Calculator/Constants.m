@@ -23,6 +23,12 @@ NSString * const kOpenUrlMetaKey = @"meta";
 
 NSString * const kOpenTabKey = @"TabToOpen";
 NSString * const kOpenTabTypeIp = @"iPTabToOpen";
+NSString * const kOpenTabTypeIntegral = @"integralTabToOpen";
+
+NSString * const kFunctionToUseKey = @"FunctionToUse";
+NSString * const kALimitToUseKey = @"ALimitToUse";
+NSString * const kBLimitToUseKey = @"BLimitToUse";
+
 NSString * const kIpToUseKey = @"IpToUse";
 NSString * const kMaskToUseKey = @"MaskToUse";
 

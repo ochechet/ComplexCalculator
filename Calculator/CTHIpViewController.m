@@ -47,23 +47,29 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.calculator = [[CTHIpCalculator alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(doCustomLayout)
+                                             name:UIApplicationDidBecomeActiveNotification
+                                           object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIp];
+    [self doCustomLayout];
+}
+
+- (void)doCustomLayout {
     NSUserDefaults *storage = [NSUserDefaults standardUserDefaults];
     NSString *ipToUse = [storage valueForKey:kIpToUseKey];
     NSString *maskToUse = [storage valueForKey:kMaskToUseKey];
-    
-    self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIp];
     
     if (ipToUse && maskToUse) {
         IpHistoryItemModel *item = [[IpHistoryItemModel alloc] initWithImage:nil title:nil info:nil ip:ipToUse mask:maskToUse];
         [storage removeObjectForKey:kIpToUseKey];
         [storage removeObjectForKey:kMaskToUseKey];
         [storage synchronize];
-
+        
         [self applyHistoryItem:item];
         
     } else {
@@ -98,12 +104,13 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
 }
 
 #pragma mark - HistoryControllerDelegate
-- (void)applyHistoryItem:(IpHistoryItemModel *)item {
-    self.ipAddressField.text = item.ip;
-    [self selectMaskAddress:item.mask];
+- (void)applyHistoryItem:(id<HistoryItemModelProtocol>)item {
+    IpHistoryItemModel *ipItem = (IpHistoryItemModel *)item;
+    self.ipAddressField.text = ipItem.ip;
+    [self selectMaskAddress:ipItem.mask];
     
-    self.calculator.ipAddressString = item.ip;
-    self.calculator.mascAdressString = item.mask;
+    self.calculator.ipAddressString = ipItem.ip;
+    self.calculator.mascAdressString = ipItem.mask;
     [self performCalculation];
 }
 

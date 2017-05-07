@@ -9,6 +9,8 @@
 #import "CTHHistoryPreviewViewController.h"
 #import "HistoryControllerDelegate.h"
 #import "HistoryItemModelProtocol.h"
+#import "IpHistoryItemModel.h"
+#import "IntegralHistoryItemModel.h"
 #import "Constants.h"
 
 
@@ -17,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *infoTextView;
-
 @end
 
 @implementation CTHHistoryPreviewViewController
@@ -45,31 +46,21 @@
 }
 
 - (IBAction)shareButtonBeenTapped:(UIButton *)sender {
-   // [self.delegate shareHistoryItem:self.item];
-   // NSString *str = @"Image form My app";
-
-
-   /* activityVC.excludedActivityTypes = @[UIActivityTypePostToWeibo,
-                                         UIActivityTypeMessage,
-                                         UIActivityTypePrint,
-                                         UIActivityTypeCopyToPasteboard,
-                                         UIActivityTypeAssignToContact,
-                                         UIActivityTypeAddToReadingList,
-                                         UIActivityTypePostToFlickr,
-                                         UIActivityTypePostToVimeo,
-                                         UIActivityTypePostToTencentWeibo];*/
-
-    
-    NSString *openUrlString = [NSString stringWithFormat:@"%@://%@=%@/%@=%@/", kOpenUrlApplicationId, kOpenUrlActivityTypeKey, kOpenUrlActivityTypeIp, kOpenUrlMetaKey, [self.item.info stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+    NSString *openUrlString;
+    if ([self.item isKindOfClass:[IpHistoryItemModel class]]) {
+        openUrlString = [NSString stringWithFormat:@"%@://%@=%@/%@=%@/", kOpenUrlApplicationId, kOpenUrlActivityTypeKey, kOpenUrlActivityTypeIp, kOpenUrlMetaKey, [self.item.info stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+    } else if ([self.item isKindOfClass:[IntegralHistoryItemModel class]]) {
+        openUrlString= [NSString stringWithFormat:@"%@://%@=%@/%@=%@/", kOpenUrlApplicationId, kOpenUrlActivityTypeKey, kOpenUrlActivityTypeIntegral, kOpenUrlMetaKey, [self.item.info stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+    }
+    if (![openUrlString length]) {
+        return ;
+    }
     
     NSArray *activityItems = @[@"Flame Calculator shared content\n\n", openUrlString, @"\nCopy whole this link and paste into web brauser to open in the app", self.item.image]; //skype trouble!
     NSArray *applicationActivities = nil;
-    NSArray *excludeActivities = nil;
     
     UIActivityViewController * activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:applicationActivities];
-    activityController.excludedActivityTypes = excludeActivities;
     
-    //[activityViewController setValue:@"VK SDK" forKey:@"subject"];
     if (UIUserInterfaceIdiomPad == [[UIDevice currentDevice] userInterfaceIdiom]) {
         UIPopoverPresentationController *popover = activityController.popoverPresentationController;
         popover.sourceView = sender;

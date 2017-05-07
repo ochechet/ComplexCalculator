@@ -63,8 +63,8 @@
     NSString *infoString = [NSString stringWithFormat:@"Ip: %@\nMask: %@\nNetwork: %@\nHost: %@\nBroadcast: %@\nFirst host: %@\nLast host: %@",self.resultModel.ipAddress, self.resultModel.maskAddress, self.resultModel.networkAddress, self.resultModel.hostAddress, self.resultModel.broadcast, self.resultModel.minimalHost, self.resultModel.maximalHost];
     
     NSDictionary *metaDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    self.resultModel.ipAddress, @"ip",
-                                    self.resultModel.maskAddress, @"mask", nil];
+                                    self.resultModel.ipAddress, kIpHistoryMetaKeyIp,
+                                    self.resultModel.maskAddress, kIpHistoryMetaKeyMask, nil];
     NSData *meta = [NSJSONSerialization dataWithJSONObject:metaDictionary
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];

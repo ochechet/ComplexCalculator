@@ -38,7 +38,13 @@ typedef NS_ENUM(NSInteger, TabBarsType) {
         [self.delegate tabBarController:self shouldSelectViewController:[[self viewControllers] objectAtIndex:neededIndex]];
         [self setSelectedIndex:neededIndex];
         [storage removeObjectForKey:kOpenTabKey];
+    } else if ([tabKey isEqualToString:kOpenTabTypeIntegral]) {
+        NSInteger neededIndex = [self indexForViewControllerType:TabBarsTypeIntegral];
+        [self.delegate tabBarController:self shouldSelectViewController:[[self viewControllers] objectAtIndex:neededIndex]];
+        [self setSelectedIndex:neededIndex];
+        [storage removeObjectForKey:kOpenTabKey];
     }
+    [storage synchronize];
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {

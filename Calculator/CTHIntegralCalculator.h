@@ -7,11 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+@class IntegralCalculationsResultModel;
 
 @interface CTHIntegralCalculator : NSObject
 
-- (double) calculateDefinedIntegralWithFunction:(double(^)(double x))function
-                                      fromLimit:(double)a
-                                        toLimit:(double)b;
+@property(strong, nonatomic) NSString *function;
+@property(strong, nonatomic) NSString *aLimit;
+@property(strong, nonatomic) NSString *bLimit;
+
+- (IntegralCalculationsResultModel *) calculateDefinedIntegral;
+
+- (void)refresh;
+- (void)persist;
 
 @end

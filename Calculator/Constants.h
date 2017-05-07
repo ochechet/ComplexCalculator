@@ -23,6 +23,12 @@ extern NSString * const kOpenUrlMetaKey;
 
 extern NSString * const kOpenTabKey;
 extern NSString * const kOpenTabTypeIp;
+extern NSString * const kOpenTabTypeIntegral;
+
+extern NSString * const kFunctionToUseKey;
+extern NSString * const kALimitToUseKey;
+extern NSString * const kBLimitToUseKey;
+
 extern NSString * const kIpToUseKey;
 extern NSString * const kMaskToUseKey;
 

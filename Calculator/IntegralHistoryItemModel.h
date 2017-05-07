@@ -15,13 +15,15 @@
 @property (strong, nonatomic, readonly) UIImage *image;
 @property (strong, nonatomic, readonly) NSString *title;
 @property (strong, nonatomic, readonly) NSString *info;
-@property (strong, nonatomic, readonly) NSString *ip;
-@property (strong, nonatomic, readonly) NSString *mask;
+@property (strong, nonatomic, readonly) NSString *function;
+@property (strong, nonatomic, readonly) NSString *aLimit;
+@property (strong, nonatomic, readonly) NSString *bLimit;
 
 - (instancetype)initWithImage:(UIImage *)image
                         title:(NSString *)title
                          info:(NSString *)info
-                           ip:(NSString *)ip
-                         mask:(NSString *)mask;
+                     function:(NSString *)function
+                       aLimit:(NSString *)aLimit
+                       bLimit:(NSString *)bLimit;
 
 @end

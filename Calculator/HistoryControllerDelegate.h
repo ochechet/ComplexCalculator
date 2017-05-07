@@ -10,6 +10,6 @@
 
 @protocol HistoryControllerDelegate <NSObject>
 
-- (void)applyHistoryItem:(IpHistoryItemModel *)item;
+- (void)applyHistoryItem:(id<HistoryItemModelProtocol>)item;
 
 @end

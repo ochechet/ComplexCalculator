@@ -32,6 +32,14 @@ static NSString *const cellReusableIdentifier = @"historyCell";
     self.historyButton.action = @selector(historyButtonBeenTapped);
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self closeMenu:self.historyContainer
+withLeadingConstraint:self.historyContainerLeadingConstraint
+             onView:self.delegate.view
+ withBackgroundView:self.historyContainerBackgroundView];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

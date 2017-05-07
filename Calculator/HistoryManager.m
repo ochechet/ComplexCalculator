@@ -13,6 +13,13 @@
 #import "IntegralHistoryItem.h"
 #import "IntegralHistoryItemModel.h"
 
+NSString * const kIpHistoryMetaKeyIp = @"ip";
+NSString * const kIpHistoryMetaKeyMask = @"mask";
+
+NSString * const kIntegralHistoryMetaKeyFunction = @"function";
+NSString * const kIntegralHistoryMetaKeyALimit = @"aLimit";
+NSString * const kIntegralHistoryMetaKeyBLimit = @"bLimit";
+
 static NSString *const IpHistoryItemCoreDataName = @"IpHistoryItem";
 static NSString *const IntegralHistoryItemCoreDataName = @"IntegralHistoryItem";
 
@@ -88,17 +95,18 @@ static NSString *const IntegralHistoryItemCoreDataName = @"IntegralHistoryItem";
             IpHistoryItemModel *model = [[IpHistoryItemModel alloc] initWithImage:[UIImage imageWithData:ipItem.image]
                                                                                   title:ipItem.title
                                                                                    info:ipItem.info
-                                                                                     ip:[metaDict objectForKey:@"ip"]
-                                                                                   mask:[metaDict objectForKey:@"mask"]];
+                                                                                     ip:[metaDict objectForKey:kIpHistoryMetaKeyIp]
+                                                                                   mask:[metaDict objectForKey:kIpHistoryMetaKeyMask]];
             [result addObject:model];
         } else {
             IntegralHistoryItem *ipItem = (IntegralHistoryItem *)item;
             NSDictionary *metaDict = [NSJSONSerialization JSONObjectWithData:ipItem.metaData options:0 error:nil];
             IntegralHistoryItemModel *model = [[IntegralHistoryItemModel alloc] initWithImage:[UIImage imageWithData:ipItem.image]
-                                                                                  title:ipItem.title
-                                                                                   info:ipItem.info
-                                                                                     ip:[metaDict objectForKey:@"ip"]
-                                                                                   mask:[metaDict objectForKey:@"mask"]];
+                                                                                        title:ipItem.title
+                                                                                         info:ipItem.info
+                                                                                     function:[metaDict objectForKey:kIntegralHistoryMetaKeyFunction]
+                                                                                       aLimit:[metaDict objectForKey:kIntegralHistoryMetaKeyALimit]
+                                                                                       bLimit:[metaDict objectForKey:kIntegralHistoryMetaKeyBLimit]];
             [result addObject:model];
         }
         

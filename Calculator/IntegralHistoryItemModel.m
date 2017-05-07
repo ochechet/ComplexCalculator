@@ -13,8 +13,9 @@
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *info;
-@property (strong, nonatomic) NSString *ip;
-@property (strong, nonatomic) NSString *mask;
+@property (strong, nonatomic) NSString *function;
+@property (strong, nonatomic) NSString *aLimit;
+@property (strong, nonatomic) NSString *bLimit;
 
 @end
 
@@ -23,15 +24,17 @@
 - (instancetype)initWithImage:(UIImage *)image
                         title:(NSString *)title
                          info:(NSString *)info
-                           ip:(NSString *)ip
-                         mask:(NSString *)mask {
+                     function:(NSString *)function
+                       aLimit:(NSString *)aLimit
+                       bLimit:(NSString *)bLimit {
     self = [super init];
     if (self) {
         self.image = image;
         self.title = title;
         self.info = info;
-        self.ip = ip;
-        self.mask = mask;
+        self.function = function;
+        self.aLimit = aLimit;
+        self.bLimit = bLimit;
     }
     return self;
 }

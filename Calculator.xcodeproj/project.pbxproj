@@ -25,6 +25,7 @@
 		FA5FBBCC1DC634D70095D86E /* CTHPersistantStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5FBBCB1DC634D70095D86E /* CTHPersistantStoreManager.m */; };
 		FA62F2FF1E47B32D00CB2812 /* CALayer+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FA62F2FE1E47B32D00CB2812 /* CALayer+Animations.m */; };
 		FA6623ED1DCFABA400E7A592 /* CTHBinaryFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6623EC1DCFABA400E7A592 /* CTHBinaryFormatter.m */; };
+		FA6C892C1EBF2CD100C5A49C /* IntegralCalculationsResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C892B1EBF2CD100C5A49C /* IntegralCalculationsResultModel.m */; };
 		FA7C0ECB1E5CD0FF0070B37A /* CTHFunctionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */; };
 		FA864A351DCF5FF90080A718 /* CTHIpResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA864A341DCF5FF90080A718 /* CTHIpResultModel.m */; };
 		FA9C520E1EACC9AD00AE5DDE /* IpHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C520D1EACC9AD00AE5DDE /* IpHistoryViewController.m */; };
@@ -104,6 +105,8 @@
 		FA62F2FE1E47B32D00CB2812 /* CALayer+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Animations.m"; sourceTree = "<group>"; };
 		FA6623EB1DCFABA400E7A592 /* CTHBinaryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHBinaryFormatter.h; sourceTree = "<group>"; };
 		FA6623EC1DCFABA400E7A592 /* CTHBinaryFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHBinaryFormatter.m; sourceTree = "<group>"; };
+		FA6C892A1EBF2CD100C5A49C /* IntegralCalculationsResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralCalculationsResultModel.h; sourceTree = "<group>"; };
+		FA6C892B1EBF2CD100C5A49C /* IntegralCalculationsResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralCalculationsResultModel.m; sourceTree = "<group>"; };
 		FA7C0EC91E5CD0FF0070B37A /* CTHFunctionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHFunctionParser.h; sourceTree = "<group>"; };
 		FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTHFunctionParser.m; sourceTree = "<group>"; };
 		FA864A331DCF5FF90080A718 /* CTHIpResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTHIpResultModel.h; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 				FAEA43F71E59F194008ADE61 /* CTHIntegralCalculator.m */,
 				FA7C0EC91E5CD0FF0070B37A /* CTHFunctionParser.h */,
 				FA7C0ECA1E5CD0FF0070B37A /* CTHFunctionParser.m */,
+				FA6C892A1EBF2CD100C5A49C /* IntegralCalculationsResultModel.h */,
+				FA6C892B1EBF2CD100C5A49C /* IntegralCalculationsResultModel.m */,
 			);
 			name = Integral;
 			sourceTree = "<group>";
@@ -581,6 +586,7 @@
 				FAFF6DCD1E7563A60046AD91 /* CTHHistoryTableViewCell.m in Sources */,
 				FAFF6E001E7569BC0046AD91 /* HistoryManager.m in Sources */,
 				E701F07F1DABAAE800330673 /* CTHMainViewController.m in Sources */,
+				FA6C892C1EBF2CD100C5A49C /* IntegralCalculationsResultModel.m in Sources */,
 				FAD5C6C41E6C433F00E90B88 /* UIViewController+ToggleLeftMenu.m in Sources */,
 				FA3BEB3A1E88112900337840 /* CTHTabBarController.m in Sources */,
 				FAD5C6CA1E6C934F00E90B88 /* CTHHistoryViewController.m in Sources */,

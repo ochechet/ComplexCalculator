@@ -65,6 +65,27 @@
             [storage setValue:kOpenTabTypeIp forKey:kOpenTabKey];
             [storage setValue:ip forKey:kIpToUseKey];
             [storage setValue:mask forKey:kMaskToUseKey];
+            [storage synchronize];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kTabNeedsRefresh object:nil];
+            NSLog(@"%@", meta);
+            return YES;
+        } else if ([[hostComponents lastObject] isEqualToString:kOpenUrlActivityTypeIntegral]) {//Integral related info
+            NSString *meta = [[[[url pathComponents] lastObject] componentsSeparatedByString:@"="] lastObject];
+            NSArray *metaItemsArray = [meta componentsSeparatedByString:@"\n"];
+            if (metaItemsArray.count < 3) {
+                return NO;
+            }
+            NSString *function = [[metaItemsArray[0] componentsSeparatedByString:@": "] lastObject];
+            NSString *aLimit = [[metaItemsArray[1] componentsSeparatedByString:@": "] lastObject];
+            NSString *bLimit = [[metaItemsArray[2] componentsSeparatedByString:@": "] lastObject];
+            
+            NSUserDefaults *storage = [NSUserDefaults standardUserDefaults];
+            [storage setValue:kOpenTabTypeIntegral forKey:kOpenTabKey];
+            [storage setValue:function forKey:kFunctionToUseKey];
+            [storage setValue:aLimit forKey:kALimitToUseKey];
+            [storage setValue:bLimit forKey:kBLimitToUseKey];
+            [storage synchronize];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kTabNeedsRefresh object:nil];
             NSLog(@"%@", meta);
