@@ -265,6 +265,7 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
                 break;
         }
     }
+    self.historyController.itemsArray = [[HistoryManager sharedManager] getHistoryInfoArrayForType:HistoryItemTypeIntegral];
 }
 
 - (IBAction)calculateButtonPressed:(id)sender {

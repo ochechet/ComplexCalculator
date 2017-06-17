@@ -127,8 +127,17 @@ typedef NS_ENUM(NSInteger, HistoryOpenState) {
     return 1;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+/*- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return [self.calculator.posibleMaskAdresses objectAtIndex:row];
+}*/
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title = [self.calculator.posibleMaskAdresses objectAtIndex:row];
+    NSAttributedString *attString =
+    [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1 green:1 blue:0 alpha:1]}];
+    
+    return attString;
 }
 
 - (void)selectMaskAddress:(NSString *)mask {

@@ -28,7 +28,7 @@
 }
 
 - (void)initialize {
-    self.functionkeys = @[@"sin", @"cos", @"tg", @"ctg", @"ln", @"lg", @"log", @"exp"];
+    self.functionkeys = @[@"sin", @"cos", @"tg", @"ctg", @"ln", @"lg", @"log2", @"exp"];
     self.functionBlocks = @[
                             //sin---------------------------
                             ^(double x) {
@@ -54,9 +54,9 @@
                              ^(double x) {
                                  return log(x) / log(10);
                              },
-                             //log---------------------------
-                             ^(double x, double y) {
-                                 return log(x) / log(y);
+                             //log2---------------------------
+                             ^(double x) {
+                                 return log(x) / log(10);
                              },
                              //exp---------------------------
                              ^(double x) {
